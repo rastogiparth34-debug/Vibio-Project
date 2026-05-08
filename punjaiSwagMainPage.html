@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vibio · Punjabi Swag Station | Desi Beats</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0c12'/%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23c084fc' stroke-width='3'/%3E%3Cpath d='M45 68 L45 38 L65 34 L65 50' stroke='%2360a5fa' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='70' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='62' cy='53' r='6' fill='%23c084fc'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 30% 10%, #0a0c12, #020207);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #edeef2;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171b24;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c084fc;
+            border-radius: 8px;
+        }
+
+        .app {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 2rem 2rem;
+        }
+
+        /* header & nav */
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .logo span {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 6px rgba(96,165,250,0.4));
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+            padding-bottom: 1.2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #b9c3e0;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+            text-shadow: 0 0 5px #c084fc;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #1e212b;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            border: 1px solid #2d2f3a;
+            transition: 0.2s;
+        }
+        .search-container:hover {
+            border-color: #c084fc;
+        }
+        .search-icon {
+            color: #c084fc;
+            margin-right: 0.5rem;
+        }
+        .search-input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            width: 200px;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .btn-login, .btn-signup {
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-login {
+            background: transparent;
+            border: 1px solid #c084fc;
+            color: #c084fc;
+        }
+        .btn-login:hover {
+            background: rgba(192, 132, 252, 0.15);
+            transform: scale(1.02);
+        }
+        .btn-signup {
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+            color: white;
+        }
+        .btn-signup:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 12px rgba(192,132,252,0.5);
+        }
+
+        /* station hero */
+        .station-hero {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(192, 132, 252, 0.15));
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 2rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fbbf24, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+        .hero-text p {
+            color: #cbd5e6;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+        .station-badge {
+            background: #4f46e5cc;
+            padding: 0.4rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            width: fit-content;
+            backdrop-filter: blur(4px);
+        }
+        .hero-stats {
+            background: rgba(0,0,0,0.5);
+            border-radius: 2rem;
+            padding: 1rem 1.5rem;
+            text-align: center;
+        }
+        .hero-stats .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #c084fc;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 2rem 0 1.2rem 0;
+        }
+        .section-header h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #ffffff, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-header a {
+            color: #c084fc;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.6rem;
+        }
+        .music-card {
+            background: rgba(18, 22, 32, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            padding: 1rem 1rem 1.2rem 1rem;
+            transition: transform 0.25s ease, background 0.2s;
+            border: 1px solid rgba(192, 132, 252, 0.2);
+        }
+        .music-card:hover {
+            transform: translateY(-6px);
+            background: rgba(28, 33, 48, 0.9);
+            border-color: #c084fc;
+            box-shadow: 0 18px 28px -12px rgba(0,0,0,0.6);
+        }
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 1.2rem;
+            margin-bottom: 0.9rem;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.3);
+        }
+        .music-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .music-card p {
+            font-size: 0.75rem;
+            color: #c084fc;
+            margin-top: 0.2rem;
+        }
+        .play-badge {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.7rem;
+            background: rgba(192,132,252,0.25);
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            width: fit-content;
+        }
+        .audio-wrapper {
+            margin-top: 0.8rem;
+            width: 100%;
+        }
+        audio {
+            width: 100%;
+            height: 32px;
+            border-radius: 30px;
+            outline: none;
+        }
+        audio::-webkit-media-controls-panel {
+            background-color: #1e1f2e;
+            border-radius: 30px;
+        }
+        audio::-webkit-media-controls-play-button {
+            background-color: #c084fc;
+            border-radius: 50%;
+        }
+        .badge-new {
+            background: #f59e0b;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            color: #0a0c12;
+            font-weight: 700;
+        }
+        .featured-mix {
+            background: linear-gradient(95deg, rgba(79,70,229,0.2), rgba(192,132,252,0.1));
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border: 1px solid rgba(192,132,252,0.4);
+        }
+        .mix-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .mix-art {
+            width: 55px;
+            height: 55px;
+            background-size: cover;
+            border-radius: 1rem;
+        }
+
+        /* footer */
+        .footer-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(192, 132, 252, 0.3);
+        }
+        .newsletter {
+            background: linear-gradient(135deg, #1e1b3e, #0f0e1a);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(192,132,252,0.3);
+        }
+        .newsletter h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .newsletter-input {
+            background: #1e212b;
+            border: 1px solid #c084fc;
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            color: white;
+            width: 260px;
+            font-family: inherit;
+        }
+        .subscribe-btn {
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            color: #c084fc;
+        }
+        .footer-col a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            transition: 0.2s;
+        }
+        .footer-col a:hover {
+            color: #c084fc;
+        }
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(192, 132, 252, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.2s;
+            cursor: default;
+        }
+        .copyright {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6b7280;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(192,132,252,0.2);
+        }
+        .attribution {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #6b7280;
+        }
+        .attribution a {
+            color: #c084fc;
+            text-decoration: none;
+        }
+        @media (max-width: 850px) {
+            .app {
+                padding: 1rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+<div class="app">
+    <!-- Header identical to Vibio style with active station -->
+    <div class="header">
+        <div class="logo">
+            <span>🎧</span> VIBIO
+        </div>
+        <div class="nav-links">
+            <a href="vibio.html">Home</a>
+            <a href="Podcasts.html">🎙️ Podcasts</a>
+            <a href="Poem.html">📜 Poems</a>
+            <a href="#" class="active">Punjabi Swag</a>
+        </div>
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search Punjabi hits...">
+        </div>
+        <div class="auth-buttons">
+            <a href="newLoginPage.html"><button class="btn-login">Log in</button></a>
+            <a href="NewSignUp.html"><button class="btn-signup">Sign up</button></a>
+        </div>
+    </div>
+    
+    <!-- Immersive Search Results Section -->
+    <div id="search-results-overlay" class="search-overlay">
+        <div class="search-overlay-header">
+            <h2 id="search-query-display">Search Results</h2>
+            <button id="close-search-btn" class="close-search">✖ Close</button>
+        </div>
+        <div id="search-results-grid" class="search-results-grid"></div>
+    </div>
+
+    <!-- Station Hero -->
+    <div class="station-hero">
+        <div class="hero-text">
+            <div class="station-badge">🦅 VIBIO EXCLUSIVE STATION</div>
+            <h1>Punjabi Swag</h1>
+            <p>Bhangra · Hip-Hop · Folk · P-Bop — the ultimate desi energy. <br>Unlimited Punjabi anthems, fresh drops & timeless classics.</p>
+        </div>
+        <div class="hero-stats">
+            <div class="stat-number">128+</div>
+            <div style="font-size: 0.7rem;">curated tracks</div>
+            <div class="stat-number" style="font-size:1.2rem;">🔥 2.3M</div>
+            <div style="font-size: 0.7rem;">monthly listeners</div>
+        </div>
+    </div>
+
+    <!-- TRENDING PUNJABI HITS SECTION (curated with audio players) -->
+    <div class="section-header">
+        <h3>🚀 trending punjabi anthems</h3>
+        <a href="#">play all →</a>
+    </div>
+    <div class="cards-grid">
+        <!-- 1. GOAT (Sidhu Moosewala) -->
+        <div class="music-card" 
+             data-src="Goat - Djjohal.fm (1).mp3" 
+             data-title="GOAT" 
+             data-artist="Sidhu Moosewala" 
+             data-img="https://i.pinimg.com/736x/34/e1/a1/34e1a10894d62bce16ac68a92e98931e.jpg">
+            <div class="card-img" style="background-image: url('https://i.pinimg.com/736x/34/e1/a1/34e1a10894d62bce16ac68a92e98931e.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>GOAT <span class="badge-new">#1</span></h4>
+            <p>Sidhu Moosewala</p>
+            <div class="play-badge">▶ 412M plays</div>
+        </div>
+        <!-- 2. Boyfriend (Karan Aujla) -->
+        <div class="music-card"
+             data-src="Boyfriend (1).mp3"
+             data-title="Boyfriend"
+             data-artist="Karan Aujla"
+             data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKIqW4XT2Ke21VZEqswYz_fm6bff9jSZXUyg&s">
+            <div class="card-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKIqW4XT2Ke21VZEqswYz_fm6bff9jSZXUyg&s');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Boyfriend</h4>
+            <p>Karan Aujla</p>
+            <div class="play-badge">▶ 289M plays</div>
+        </div>
+        <!-- 3. Brown Rang (Yo Yo Honey Singh) -->
+        <div class="music-card"
+             data-src="Brown Rang - Yo Yo Honey Singh (1).mp3"
+             data-title="Brown Rang"
+             data-artist="Yo Yo Honey Singh"
+             data-img="https://upload.wikimedia.org/wikipedia/en/4/44/Brown_Rang_song.jpg">
+            <div class="card-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/44/Brown_Rang_song.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Brown Rang</h4>
+            <p>Yo Yo Honey Singh</p>
+            <div class="play-badge">▶ 589M plays</div>
+        </div>
+        <!-- 4. Excuses (AP Dhillon) -->
+        <div class="music-card"
+             data-src="Excuses (1).mp3"
+             data-title="Excuses"
+             data-artist="AP Dhillon"
+             data-img="https://i.ytimg.com/vi/x18b0D8sTwo/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/x18b0D8sTwo/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Excuses</h4>
+            <p>AP Dhillon</p>
+            <div class="play-badge">▶ 153M plays</div>
+        </div>
+        <!-- 5. Russian Bandana (Dhanda Nyoliwala) -->
+        <div class="music-card"
+             data-src="Russian Bandana Dhanda Nyoliwala 320 Kbps (1).mp3"
+             data-title="Russian Bandana"
+             data-artist="Dhanda Nyoliwala"
+             data-img="https://i1.sndcdn.com/artworks-BQfkak3OtcyMi1ld-BgXW6Q-t1080x1080.jpg">
+            <div class="card-img" style="background-image: url('https://i1.sndcdn.com/artworks-BQfkak3OtcyMi1ld-BgXW6Q-t1080x1080.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Russian Bandana</h4>
+            <p>Dhanda Nyoliwala</p>
+            <div class="play-badge">▶ 395M plays</div>
+        </div>
+        <!-- 6. Charmer (Diljit Dosanjh) -->
+        <div class="music-card">
+            <div class="card-img" style="background-image: url('https://www.bollywoodhungama.com/wp-content/uploads/2025/10/Diljit-Dosanjh-and-Sanya-Malhotra-mesmerize-in-%E2%80%98Charmer-watch-feautres.jpg');"></div>
+            <h4>Charmer</h4>
+            <p>Diljit Dosanjh</p>
+            <div class="play-badge">▶ 210M plays</div>
+            <div class="audio-wrapper">
+                <audio controls preload="none">
+                    <source src="Charmer - Diljit Dosanjh (1).mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+    </div>
+
+    <!-- PUNJABI SWAG ESSENTIALS (extra 6 tracks) -->
+    <div class="section-header">
+        <h3>⚡ swag essentials · bhangra takeover</h3>
+        <a href="#">view full playlist →</a>
+    </div>
+    <div class="cards-grid">
+        <!-- 7. 295 (Sidhu Moosewala) placeholder with alternative preview, but provide good thumb -->
+        <div class="music-card"
+             data-src="295 - Sidhu Moose Wala.mp3"
+             data-title="295"
+             data-artist="Sidhu Moosewala"
+             data-img="https://s1.dmcdn.net/v/U2isi1YnJ2Yydr5gL/x1080">
+            <div class="card-img" style="background-image: url('https://s1.dmcdn.net/v/U2isi1YnJ2Yydr5gL/x1080');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>295</h4>
+            <p>Sidhu Moosewala</p>
+            <div class="play-badge">▶ 680M plays</div>
+        </div>
+        <!-- 8. Lemonade (Diljit Dosanjh) -->
+        <div class="music-card"
+             data-src="Lemonade.mp3"
+             data-title="Lemonade"
+             data-artist="Diljit Dosanjh"
+             data-img="https://lyricstranslated.com/wp-content/uploads/2022/10/lemonade-lyrics-meaning-in-hindi-diljit-dosanjh-YBw4zXysLJQ.jpg">
+            <div class="card-img" style="background-image: url('https://lyricstranslated.com/wp-content/uploads/2022/10/lemonade-lyrics-meaning-in-hindi-diljit-dosanjh-YBw4zXysLJQ.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Lemonade</h4>
+            <p>Diljit Dosanjh</p>
+            <div class="play-badge">▶ 170M plays</div>
+        </div>
+        <!-- 9. The Last Ride (Sidhu Moosewala) -->
+        <div class="music-card"
+             data-src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_fb627f0b3a.mp3?filename=dhol-tasha-110230.mp3"
+             data-title="The Last Ride"
+             data-artist="Sidhu Moosewala"
+             data-img="https://i.ytimg.com/vi/5W_QtChtlhc/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/5W_QtChtlhc/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>The Last Ride</h4>
+            <p>Sidhu Moosewala</p>
+            <div class="play-badge">▶ 244M plays</div>
+        </div>
+        <!-- 10. 8 ASLE (Shubh) -->
+        <div class="music-card"
+             data-src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d3c2c9be29.mp3?filename=indian-melody-115979.mp3"
+             data-title="8 ASLE"
+             data-artist="Shubh"
+             data-img="https://i.ytimg.com/vi/X-cTO3r8Pys/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/X-cTO3r8Pys/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>8 ASLE</h4>
+            <p>Shubh</p>
+            <div class="play-badge">▶ 98M plays</div>
+        </div>
+        <!-- 11. Pasoori (Ali Sethi) Punjabi Fusion -->
+        <div class="music-card"
+             data-src="Pasoori-(SambalpuriStar.In) (1).mp3"
+             data-title="Pasoori"
+             data-artist="Ali Sethi"
+             data-img="https://i.ytimg.com/vi/5Eqb_-j3FDA/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/5Eqb_-j3FDA/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Pasoori</h4>
+            <p>Ali Sethi, Shae Gill</p>
+            <div class="play-badge">▶ 943M plays</div>
+        </div>
+        <!-- 12. Top 50 Punjabi Mashup (special mix) -->
+        <div class="music-card"
+             data-src="2 Khatole.mp3"
+             data-title="Punjabi Mashup 2025"
+             data-artist="DJ Flow"
+             data-img="https://source.boomplaymusic.com/group10/M00/02/15/c156b3e5ff8d41a48187e0d3224f4295H3000W3000_464_464.jpg">
+            <div class="card-img" style="background-image: url('https://source.boomplaymusic.com/group10/M00/02/15/c156b3e5ff8d41a48187e0d3224f4295H3000W3000_464_464.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Punjabi Mashup 2025</h4>
+            <p>DJ Flow</p>
+            <div class="play-badge">🔥 viral mix</div>
+        </div>
+    </div>
+
+    <!-- Daily Punjabi Mix Section (continuous energy) -->
+    <div class="featured-mix">
+        <div class="mix-info">
+            <div class="mix-art" style="background-image: url('https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop');"></div>
+            <div>
+                <span class="play-badge" style="background: #c084fc; color: #0a0c12;">🎧 daily swag rotation</span>
+                <h4 style="margin-top: 6px;">Punjabi Non-Stop Mix</h4>
+                <p style="font-size: 0.75rem;">Bhangra, Hip-hop & Folk — updated everyday</p>
+            </div>
+        </div>
+        <div class="featured-audio" style="min-width: 200px;">
+            <audio controls  loop>
+                <source src="Goat - Djjohal.fm (1).mp3" type="audio/mpeg">
+            </audio>
+            <div style="font-size: 0.7rem; color: #c084fc; margin-top: 0.3rem;">🔊 24/7 Punjabi Vibes</div>
+        </div>
+    </div>
+
+    <!-- FRESH PUNJABI DROPS -->
+    <div class="section-header">
+        <h3>🪄 fresh drops · punjabi flavor</h3>
+        <a href="#">new arrivals →</a>
+    </div>
+    <div class="cards-grid">
+        <div class="music-card"
+             data-src="Bairan Banjaare (pagalall.com) (1).mp3"
+             data-title="Bairan"
+             data-artist="Banjaree"
+             data-img="https://djbaap.com.se/covers/bairan.webp">
+            <div class="card-img" style="background-image: url('https://djbaap.com.se/covers/bairan.webp');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Bairan <span class="badge-new">NEW</span></h4>
+            <p>Banjaree</p>
+            <div class="play-badge">✨ fresh release</div>
+        </div>
+        <div class="music-card">
+            <div class="card-img" style="background-image: url('https://c.saavncdn.com/915/Raanjhan-From-Do-Patti-Hindi-2024-20241004153945-500x500.jpg');"></div>
+            <h4>Raanjhan</h4>
+            <p>Kriti Sanon, Sachet</p>
+            <div class="play-badge">⚡ trending</div>
+            <div class="audio-wrapper">
+                <audio controls preload="none">
+                    <source src="Raanjhan Do Patti 320 Kbps (1).mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+        <div class="music-card">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/AX6OrbgS8lI/maxresdefault.jpg');"></div>
+            <h4>Tu Hai Kahan</h4>
+            <p>Ahad Khan</p>
+            <div class="play-badge">❤️‍🔥 romantic punjabi</div>
+            <div class="audio-wrapper">
+                <audio controls preload="none">
+                    <source src="Tu Hai Kahan-(SambalpuriStar.In) (1).mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </div>
+        <div class="music-card"
+             data-src="Victory Anthem-(SambalpuriStar.In) (1).mp3"
+             data-title="Victory Anthem"
+             data-artist="Yo Yo Honey Singh"
+             data-img="https://i.ytimg.com/vi/oyt4Ms7mj_o/sddefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/oyt4Ms7mj_o/sddefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Victory Anthem</h4>
+            <p>Khushi, YoYo</p>
+            <div class="play-badge">🏆 hype</div>
+        </div>
+    </div>
+
+    <!-- Footer (clean same as original) -->
+    <div class="footer-section">
+        <div class="newsletter">
+            <h3>🎶 never miss a punjabi drop</h3>
+            <p>Get the latest desi releases, artist news & exclusive mixes</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email">
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Vibio</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="#">For Artists</a>
+                <a href="#">Developers</a>
+                <a href="#">Merch</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <div class="social-icon">📱</div>
+                    <div class="social-icon">🎵</div>
+                    <div class="social-icon">🎧</div>
+                    <div class="social-icon">⭐</div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Vibio — Punjabi Swag Station. All rights reserved.
+        </div>
+        <div class="attribution">
+            🎵 Some tracks provided by <a href="https://pixabay.com/music/" target="_blank">Pixabay Music</a> (royalty-free) & independent artists.
+        </div>
+    </div>
+</div>
+    <script src="theme.js"></script>
+    <script src="playlist_manager.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>

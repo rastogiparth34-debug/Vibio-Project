@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibio Project Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c084fc;
+            --secondary: #60a5fa;
+            --accent: #f59e0b;
+            --bg: #0a0c12;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 12, 18, 0.4), rgba(10, 12, 18, 0.9));
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease 0.4s;
+        }
+
+        .slide.active .slide-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation Controls */
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            transition: background 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .control-btn:hover {
+            background: var(--primary);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+
+        /* Specific Slide Styling */
+        #slide-title {
+            text-align: center;
+        }
+
+        .logo-symbol {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .tech-tag {
+            background: rgba(96, 165, 250, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            border: 1px solid var(--secondary);
+            font-weight: 600;
+        }
+
+        .poem-preview {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2rem;
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .btn-demo {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .btn-demo:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .slide { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progress"></div>
+
+    <div class="presentation-container" id="container">
+        <!-- Slide 1: Title -->
+        <section class="slide active" id="slide-title" style="background-image: url('vibio_hero_background_1777997058524.png');">
+            <div class="slide-content">
+                <div class="logo-symbol">🎧</div>
+                <div class="tagline">The Ultimate Desi Experience</div>
+                <h1>VIBIO</h1>
+                <p>Streaming the soul of India through Music, Podcasts, and Poetry.</p>
+                <div style="margin-top: 3rem;">
+                    <span style="color: var(--text-dim);">Presented by Project Vibio Team</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Introduction -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="tagline">What is Vibio?</div>
+                <h2>A Multi-Sensory Platform</h2>
+                <p>Vibio is more than just a music player. It's a cultural hub designed for the modern Desi audience, blending heritage with high-tech streaming.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🎵 Music</h3>
+                        <p>High-quality streaming of Bollywood, Punjabi Swag, and Haryanvi Power.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎙️ Podcasts</h3>
+                        <p>Engaging stories and discussions from top creators.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📜 Poem Lounge</h3>
+                        <p>An immersive literary experience featuring legendary poets.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💎 Premium</h3>
+                        <p>Exclusive access to high-fidelity audio and ad-free listening.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Desi Beats -->
+        <section class="slide" style="background-image: url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&fit=crop');">
+            <div class="slide-content">
+                <div class="tagline">The Sound of the Soil</div>
+                <h2>Curated Music Stations</h2>
+                <p>Vibio brings you the most energetic and soulful tracks from across the subcontinent.</p>
+                <ul style="list-style: none; font-size: 1.5rem; color: var(--secondary);">
+                    <li>🔥 <strong>Trending Beats:</strong> The latest global hits.</li>
+                    <li>🦅 <strong>Punjabi Swag:</strong> Sidhu Moosewala, Karan Aujla, and more.</li>
+                    <li>💪 <strong>Haryanvi Power:</strong> Raw energy and folk beats.</li>
+                    <li>🎬 <strong>Bollywood Classics:</strong> The melodies that define eras.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 4: Poem Lounge -->
+        <section class="slide" style="background-image: url('poem_lounge_visual_1777997196158.png');">
+            <div class="slide-content">
+                <div class="tagline">Literature in Motion</div>
+                <h2>The Poem Lounge</h2>
+                <p>An elegant sanctuary for the literary soul. Experience poetry from legends like Mirza Ghalib, Harivansh Rai Bachchan, and Gulzar.</p>
+                <div class="poem-preview">
+                    "Koshish karne walon ki kabhi haar nahi hoti..."
+                    <br>— Sohanlal Dwivedi
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Urdu Shayari</h3>
+                        <p>Timeless ghazals and nazms from the masters of the craft.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Hindi Classics</h3>
+                        <p>Inspiring verses that have shaped generations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Podcasts -->
+        <section class="slide" style="background-image: url('podcast_visual_1777997774821.png');">
+            <div class="slide-content">
+                <div class="tagline">Voices That Matter</div>
+                <h2>Modern Podcasting</h2>
+                <p>A seamless podcast discovery and playback engine, bringing you closer to the creators you love.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Smart Discovery</h3>
+                        <p>Search and find podcasts across various genres and languages.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Unified Player</h3>
+                        <p>Switch between music and podcasts without losing your rhythm.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Design & Experience -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="tagline">Aesthetics & Performance</div>
+                <h2>The Vibio Experience</h2>
+                <p>Built with a "Mobile-First" and "Premium-Only" design philosophy.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Glassmorphism UI</h3>
+                        <p>Sleek, transparent elements with vibrant gradients and blur effects.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Adaptive Themes</h3>
+                        <p>Seamlessly switch between Dark and Light modes for any environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Micro-Animations</h3>
+                        <p>Subtle, smooth transitions that make the app feel alive.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Global Search</h3>
+                        <p>An immersive search overlay that delivers results instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Technical Stack -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="tagline">Behind the Scenes</div>
+                <h2>Technical Infrastructure</h2>
+                <p>A robust and scalable architecture built with modern web technologies.</p>
+                <ul class="tech-list" style="margin-bottom: 2rem;">
+                    <li class="tech-tag">HTML5</li>
+                    <li class="tech-tag">Vanilla CSS3</li>
+                    <li class="tech-tag">JavaScript (ES6+)</li>
+                    <li class="tech-tag">LocalStorage API</li>
+                    <li class="tech-tag">Flexbox & Grid</li>
+                    <li class="tech-tag">Web Audio API</li>
+                    <li class="tech-tag">Responsive Design</li>
+                </ul>
+                <div class="feature-card">
+                    <h3>State Management</h3>
+                    <p>Persistent user data, including playlists and subscriptions, managed locally for instant responsiveness.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Future Roadmap -->
+        <section class="slide" style="background-image: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&fit=crop');">
+            <div class="slide-content">
+                <div class="tagline">The Journey Ahead</div>
+                <h2>Future Roadmap</h2>
+                <p>Expanding the Vibio ecosystem to reach more hearts and homes.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Artist Dashboard</h3>
+                        <p>Empowering local artists to upload and manage their content.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Community Features</h3>
+                        <p>Social sharing, collaborative playlists, and live poetry slams.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Mobile App (PWA)</h3>
+                        <p>Native-like experience on iOS and Android via Progressive Web App tech.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>AI Recommendations</h3>
+                        <p>Personalized discovery based on your listening habits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Conclusion -->
+        <section class="slide" style="background-image: url('vibio_hero_background_1777997058524.png');">
+            <div class="slide-content" style="text-align: center;">
+                <div class="tagline">Thank You</div>
+                <h1>Ready to Vibe?</h1>
+                <p>Vibio is redefining cultural streaming for the next billion users.</p>
+                <div style="margin-top: 2rem;">
+                    <a href="vibio.html" class="btn-demo">Launch Vibio App →</a>
+                </div>
+                <div style="margin-top: 4rem; color: var(--text-dim);">
+                    <p style="font-size: 1rem;">© 2026 Vibio Music. All Rights Reserved.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn" id="prev">←</button>
+        <button class="control-btn" id="next">→</button>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            container.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            progress.style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlide();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlide();
+                }
+            }
+        });
+
+        // Initialize progress
+        updateSlide();
+    </script>
+</body>
+</html>

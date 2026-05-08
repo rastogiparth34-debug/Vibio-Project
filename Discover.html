@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vibio · Discover | Desi Beats & New Music</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0c12'/%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23c084fc' stroke-width='3'/%3E%3Cpath d='M45 68 L45 38 L65 34 L65 50' stroke='%2360a5fa' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='70' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='62' cy='53' r='6' fill='%23c084fc'/%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0c12, #030207);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #edeef2;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171b24;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c084fc;
+            border-radius: 8px;
+        }
+
+        .app {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 2rem 2rem;
+        }
+
+        /* header */
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .logo span {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 6px rgba(96,165,250,0.4));
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(192, 132, 252, 0.3);
+            padding-bottom: 1.2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #b9c3e0;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+            text-shadow: 0 0 5px #c084fc;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #1e212b;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            border: 1px solid #2d2f3a;
+            transition: 0.2s;
+        }
+        .search-container:hover {
+            border-color: #c084fc;
+        }
+        .search-icon {
+            color: #c084fc;
+            margin-right: 0.5rem;
+        }
+        .search-input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            width: 200px;
+        }
+        .auth-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .btn-login, .btn-signup {
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-login {
+            background: transparent;
+            border: 1px solid #c084fc;
+            color: #c084fc;
+        }
+        .btn-login:hover {
+            background: rgba(192, 132, 252, 0.15);
+            transform: scale(1.02);
+        }
+        .btn-signup {
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+            color: white;
+        }
+        .btn-signup:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 12px rgba(192,132,252,0.5);
+        }
+
+        /* hero */
+        .discover-hero {
+            background: linear-gradient(115deg, rgba(79,70,229,0.25), rgba(192,132,252,0.2));
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            text-align: center;
+        }
+        .discover-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .discover-hero p {
+            font-size: 1.1rem;
+            color: #cbd5e6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .discover-badge {
+            display: inline-block;
+            background: rgba(192,132,252,0.25);
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* section headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 2rem 0 1.2rem 0;
+        }
+        .section-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #fff, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .section-header a {
+            color: #c084fc;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* genre grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .genre-card {
+            background: rgba(18, 22, 32, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.2s, background 0.2s;
+            border: 1px solid rgba(192, 132, 252, 0.2);
+            cursor: pointer;
+        }
+        .genre-card:hover {
+            transform: translateY(-6px);
+            background: rgba(28, 33, 48, 0.9);
+            border-color: #c084fc;
+        }
+        .genre-emoji {
+            font-size: 2.8rem;
+            margin-bottom: 0.7rem;
+        }
+        .genre-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .genre-card p {
+            font-size: 0.7rem;
+            color: #a78bfa;
+            margin-top: 0.2rem;
+        }
+
+        /* discovery cards (playlists / albums) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1.5rem;
+        }
+        .discover-card {
+            background: rgba(18, 22, 32, 0.7);
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            transition: transform 0.2s, background 0.2s;
+            border: 1px solid rgba(192, 132, 252, 0.2);
+        }
+        .discover-card:hover {
+            transform: translateY(-5px);
+            background: rgba(28, 33, 48, 0.9);
+            border-color: #c084fc;
+        }
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-size: cover;
+            background-position: center;
+        }
+        .card-info {
+            padding: 0.9rem 1rem 1rem 1rem;
+        }
+        .card-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .card-info p {
+            font-size: 0.7rem;
+            color: #c084fc;
+            margin-top: 0.2rem;
+        }
+        .badge {
+            background: #f59e0b;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            color: #0a0c12;
+            font-weight: 700;
+            margin-left: 0.4rem;
+        }
+
+        /* new releases */
+        .release-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(18, 22, 32, 0.6);
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .release-card:hover {
+            border-color: #c084fc;
+            background: rgba(28, 33, 48, 0.8);
+        }
+        .release-thumb {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        .release-info {
+            flex: 1;
+        }
+        .release-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .release-info p {
+            font-size: 0.7rem;
+            color: #a78bfa;
+        }
+        .release-date {
+            font-size: 0.65rem;
+            color: #8b92b0;
+        }
+
+        /* footer */
+        .footer-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(192, 132, 252, 0.3);
+        }
+        .newsletter {
+            background: linear-gradient(135deg, #1e1b3e, #0f0e1a);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(192,132,252,0.3);
+        }
+        .newsletter h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .newsletter-input {
+            background: #1e212b;
+            border: 1px solid #c084fc;
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            color: white;
+            width: 260px;
+            font-family: inherit;
+        }
+        .subscribe-btn {
+            background: linear-gradient(135deg, #c084fc, #8b5cf6);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            color: #c084fc;
+        }
+        .footer-col a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            transition: 0.2s;
+        }
+        .footer-col a:hover {
+            color: #c084fc;
+        }
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(192, 132, 252, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.2s;
+            cursor: default;
+        }
+        .copyright {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6b7280;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(192,132,252,0.2);
+        }
+        .attribution {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #6b7280;
+        }
+        .attribution a {
+            color: #c084fc;
+            text-decoration: none;
+        }
+
+        @media (max-width: 850px) {
+            .app {
+                padding: 1rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .discover-hero h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .genre-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+        a{
+            text-decoration: none;
+            color:inherit;
+        }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+<div class="app">
+    <!-- header with active discover -->
+    <div class="header">
+        <div class="logo">
+            <span>🎧</span> VIBIO
+        </div>
+        <div class="nav-links">
+            <a href="vibio.html">Home</a>
+            <a href="#" class="active">Discover</a>
+            <a href="Playlist.html">Playlists</a>
+        </div>
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search artists, genres...">
+        </div>
+        <div class="auth-buttons">
+            <a href="newLoginPage.html"><button class="btn-login">Log in</button></a>
+            <a href="NewSignUp.html"><button class="btn-signup">Sign up</button></a>
+        </div>
+    </div>
+    
+    <!-- Immersive Search Results Section -->
+    <div id="search-results-overlay" class="search-overlay">
+        <div class="search-overlay-header">
+            <h2 id="search-query-display">Search Results</h2>
+            <button id="close-search-btn" class="close-search">✖ Close</button>
+        </div>
+        <div id="search-results-grid" class="search-results-grid"></div>
+    </div>
+
+    <!-- Hero section -->
+    <div class="discover-hero">
+        <div class="discover-badge">✨ fresh sounds · desi roots</div>
+        <h1>Discover your next vibe</h1>
+        <p>Explore trending genres, handpicked playlists, and new releases from the best of desi music culture.</p>
+    </div>
+
+    <!-- Trending Genres (simple & beautiful) -->
+    <div class="section-header">
+        <h3>🎧 trending genres</h3>
+        <a href="#">see all →</a>
+    </div>
+    <div class="genre-grid">
+        <a href="punjaiSwagMainPage.html"><div class="genre-card">
+            <div class="genre-emoji">🦅</div>
+            <h4>Punjabi Swag</h4>
+            <p>Bhangra · Hip-Hop</p>
+        </div></a>
+        <div class="genre-card">
+            <div class="genre-emoji">🎬</div>
+            <h4>Bollywood</h4>
+            <p>Romantic · Dance</p>
+        </div>
+        <div class="genre-card">
+            <div class="genre-emoji">💪</div>
+            <h4>Haryanvi Power</h4>
+            <p>Folk · Street</p>
+        </div>
+        <div class="genre-card">
+            <div class="genre-emoji">✨</div>
+            <h4>Indie Pop</h4>
+            <p>Fresh · Melodic</p>
+        </div>
+        <div class="genre-card">
+            <div class="genre-emoji">🎹</div>
+            <h4>Sufi Classics</h4>
+            <p>Qawwali · Soulful</p>
+        </div>
+        <div class="genre-card">
+            <div class="genre-emoji">🔥</div>
+            <h4>Desi Hip-Hop</h4>
+            <p>Beats · Bars</p>
+        </div>
+    </div>
+
+    <!-- Recommended for you (curated playlists) -->
+    <div class="section-header">
+        <h3>🌟 recommended for you</h3>
+        <a href="#">more →</a>
+    </div>
+    <div class="cards-grid">
+        <div class="discover-card">
+            <div class="card-img" style="background-image: url('https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop');"></div>
+            <div class="card-info">
+                <h4>Bhangra Beats <span class="badge">🔥</span></h4>
+                <p>Punjabi Folk + Modern</p>
+            </div>
+        </div>
+        <div class="discover-card">
+            <div class="card-img" style="background-image: url('https://images.pexels.com/photos/1389429/pexels-photo-1389429.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop');"></div>
+            <div class="card-info">
+                <h4>Romantic Desi</h4>
+                <p>Bollywood love anthems</p>
+            </div>
+        </div>
+        <div class="discover-card">
+            <div class="card-img" style="background-image: url('https://images.pexels.com/photos/1457075/pexels-photo-1457075.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop');"></div>
+            <div class="card-info">
+                <h4>Hip-Hop Highway</h4>
+                <p>Desi rappers & bars</p>
+            </div>
+        </div>
+        <div class="discover-card">
+            <div class="card-img" style="background-image: url('https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop');"></div>
+            <div class="card-info">
+                <h4>Sufi Nights</h4>
+                <p>Calm & spiritual</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- New & Notable (recent releases) -->
+    <div class="section-header">
+        <h3>🪐 new & notable</h3>
+        <a href="#">view all →</a>
+    </div>
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+        <div class="release-card">
+            <div class="release-thumb" style="background-image: url('https://i.ytimg.com/vi/AX6OrbgS8lI/maxresdefault.jpg');"></div>
+            <div class="release-info">
+                <h4>Tu Hai Kahan</h4>
+                <p>Ahad Khan</p>
+                <div class="release-date">2 days ago</div>
+            </div>
+        </div>
+        <div class="release-card">
+            <div class="release-thumb" style="background-image: url('https://c.saavncdn.com/915/Raanjhan-From-Do-Patti-Hindi-2024-20241004153945-500x500.jpg');"></div>
+            <div class="release-info">
+                <h4>Raanjhan</h4>
+                <p>Kriti Sanon, Sachet</p>
+                <div class="release-date">1 week ago</div>
+            </div>
+        </div>
+        <div class="release-card">
+            <div class="release-thumb" style="background-image: url('https://www.bollywoodhungama.com/wp-content/uploads/2025/10/Diljit-Dosanjh-and-Sanya-Malhotra-mesmerize-in-%E2%80%98Charmer-watch-feautres.jpg');"></div>
+            <div class="release-info">
+                <h4>Charmer</h4>
+                <p>Diljit Dosanjh</p>
+                <div class="release-date">Just dropped</div>
+            </div>
+        </div>
+        <div class="release-card">
+            <div class="release-thumb" style="background-image: url('https://i.ytimg.com/vi/5Eqb_-j3FDA/maxresdefault.jpg');"></div>
+            <div class="release-info">
+                <h4>Pasoori (Remix)</h4>
+                <p>Ali Sethi, Shae Gill</p>
+                <div class="release-date">3 days ago</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Vibes: simple featured -->
+    <div class="section-header">
+        <h3>📻 daily desi mix</h3>
+        <a href="#">listen now →</a>
+    </div>
+    <div style="background: linear-gradient(95deg, rgba(79,70,229,0.2), rgba(192,132,252,0.1)); border-radius: 1.8rem; padding: 1.2rem 1.8rem; margin: 0.5rem 0 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 55px; height: 55px; background-image: url('https://images.pexels.com/photos/167636/pexels-photo-167636.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop'); background-size: cover; border-radius: 1rem;"></div>
+            <div>
+                <span style="background: #c084fc; padding: 0.2rem 0.8rem; border-radius: 50px; font-size: 0.7rem;">🎧 editor's pick</span>
+                <h4 style="margin-top: 6px;">Punjabi Nonstop · Bhangra Mix</h4>
+                <p style="font-size: 0.75rem;">Updated daily — ultimate party vibes</p>
+            </div>
+        </div>
+        <div>
+            <audio controls style="width: 220px;">
+                <source src="Tu Hai Kahan-(SambalpuriStar.In) (1).mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+        <div class="newsletter">
+            <h3>🎶 discover more, never miss a beat</h3>
+            <p>Get fresh recommendations, new releases & curated playlists</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email">
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Vibio</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="#">For Artists</a>
+                <a href="#">Developers</a>
+                <a href="#">Merch</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <div class="social-icon">📱</div>
+                    <div class="social-icon">🎵</div>
+                    <div class="social-icon">🎧</div>
+                    <div class="social-icon">⭐</div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Vibio — Discover Desi Beats. All rights reserved.
+        </div>
+        <div class="attribution">
+            🎵 Some demo audio from <a href="https://pixabay.com/music/" target="_blank">Pixabay Music</a> (royalty-free). Images from Pexels.
+        </div>
+    </div>
+</div>
+    <script src="theme.js"></script>
+    <script src="playlist_manager.js"></script>
+    <script src="search.js"></script>
+</body>
+</html>

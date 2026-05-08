@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Vibio — Immersive Login | Pure Vibes</title>
+  <style>
+    /* ---------- RESET & GLOBAL ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #050510;
+      font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ============================================
+       DREAMSCAPE ANIMATED BACKGROUND (PURE CSS)
+       ============================================ */
+    .dream-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: radial-gradient(circle at 20% 30%, #0a0a2a, #030318);
+      animation: slowBreathing 12s ease-in-out infinite;
+    }
+
+    @keyframes slowBreathing {
+      0%, 100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+      50% { opacity: 0.92; transform: scale(1.02); filter: brightness(1.08); }
+    }
+
+    /* morphing orbs */
+    .morph-orbs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.35;
+      animation: floatOrb 18s infinite alternate;
+    }
+
+    .orb1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #8b5cf6, #3b82f6);
+      top: -150px;
+      left: -150px;
+      animation-duration: 22s;
+    }
+
+    .orb2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #ec489a, #a855f7);
+      bottom: -200px;
+      right: -150px;
+      animation-duration: 26s;
+      animation-delay: -5s;
+    }
+
+    .orb3 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #f59e0b, #ef4444);
+      top: 40%;
+      left: 65%;
+      animation-duration: 19s;
+      animation-delay: -2s;
+    }
+
+    .orb4 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, #06b6d4, #8b5cf6);
+      bottom: 10%;
+      left: 10%;
+      animation-duration: 24s;
+      animation-delay: -8s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.2); }
+    }
+
+    /* floating geometric shapes */
+    .geometric-figures {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .shape {
+      position: absolute;
+      border: 1.5px solid rgba(139, 92, 246, 0.3);
+      background: rgba(139, 92, 246, 0.03);
+      backdrop-filter: blur(4px);
+      animation: rotateShape 25s linear infinite;
+    }
+
+    .shape1 {
+      width: 280px;
+      height: 280px;
+      top: 15%;
+      left: 5%;
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      animation-duration: 30s;
+    }
+
+    .shape2 {
+      width: 360px;
+      height: 360px;
+      bottom: 5%;
+      right: 3%;
+      border-radius: 55% 45% 35% 65% / 30% 55% 45% 70%;
+      animation-duration: 35s;
+      border-color: rgba(236, 72, 153, 0.35);
+    }
+
+    .shape3 {
+      width: 200px;
+      height: 200px;
+      top: 65%;
+      left: 80%;
+      border-radius: 65% 35% 45% 55% / 60% 40% 60% 40%;
+      animation-duration: 28s;
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    @keyframes rotateShape {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* musical wave lines */
+    .wave-lines {
+      position: fixed;
+      bottom: 5%;
+      left: 0;
+      width: 100%;
+      pointer-events: none;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .wave {
+      width: 6px;
+      height: 60px;
+      background: linear-gradient(to top, #c084fc, #60a5fa);
+      border-radius: 20px;
+      animation: waveBeat 1.2s ease-in-out infinite;
+    }
+
+    .wave:nth-child(1) { animation-delay: 0s; height: 35px; }
+    .wave:nth-child(2) { animation-delay: 0.2s; height: 55px; }
+    .wave:nth-child(3) { animation-delay: 0.4s; height: 45px; }
+    .wave:nth-child(4) { animation-delay: 0.6s; height: 70px; }
+    .wave:nth-child(5) { animation-delay: 0.8s; height: 40px; }
+    .wave:nth-child(6) { animation-delay: 1s; height: 60px; }
+    .wave:nth-child(7) { animation-delay: 1.2s; height: 30px; }
+    .wave:nth-child(8) { animation-delay: 1.4s; height: 50px; }
+
+    @keyframes waveBeat {
+      0%, 100% { transform: scaleY(0.6); opacity: 0.6; }
+      50% { transform: scaleY(1.3); opacity: 1; }
+    }
+
+    /* dancing particles (CSS only) */
+    .dancing-dust {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .dust {
+      position: absolute;
+      background: rgba(139, 92, 246, 0.7);
+      border-radius: 50%;
+      filter: blur(3px);
+      animation: dustDance 5s infinite alternate;
+    }
+
+    @keyframes dustDance {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+      100% { transform: translate(12px, -15px) scale(1.5); opacity: 0.7; }
+    }
+
+    .dust1 { width: 5px; height: 5px; top: 12%; left: 20%; animation-duration: 3s; }
+    .dust2 { width: 7px; height: 7px; top: 28%; left: 78%; animation-duration: 4.2s; animation-delay: 0.5s; }
+    .dust3 { width: 4px; height: 4px; top: 55%; left: 15%; animation-duration: 3.8s; animation-delay: 0.2s; }
+    .dust4 { width: 6px; height: 6px; top: 70%; left: 85%; animation-duration: 5s; animation-delay: 1s; }
+    .dust5 { width: 5px; height: 5px; top: 42%; left: 45%; animation-duration: 3.5s; animation-delay: 0.8s; }
+    .dust6 { width: 4px; height: 4px; top: 82%; left: 32%; animation-duration: 4.5s; }
+    .dust7 { width: 8px; height: 8px; top: 18%; left: 92%; animation-duration: 3.2s; animation-delay: 1.2s; }
+    .dust8 { width: 5px; height: 5px; top: 48%; left: 68%; animation-duration: 4s; }
+    .dust9 { width: 6px; height: 6px; top: 88%; left: 55%; animation-duration: 4.7s; animation-delay: 0.3s; }
+    .dust10 { width: 3px; height: 3px; top: 33%; left: 8%; animation-duration: 3.3s; }
+
+    /* floating music notes (animated emojis) */
+    .floating-notes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .note {
+      position: absolute;
+      font-size: 26px;
+      opacity: 0;
+      filter: drop-shadow(0 0 6px #a855f7);
+      animation: floatNote 14s linear infinite;
+    }
+
+    @keyframes floatNote {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.7; }
+      80% { opacity: 0.7; transform: translateY(-10vh) rotate(340deg); }
+      100% {
+        transform: translateY(-30vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .note1 { left: 5%; animation-delay: 0s; animation-duration: 12s; content: "♪"; }
+    .note2 { left: 15%; animation-delay: 2s; animation-duration: 14s; content: "♫"; }
+    .note3 { left: 25%; animation-delay: 4s; animation-duration: 10s; content: "🎵"; }
+    .note4 { left: 40%; animation-delay: 1s; animation-duration: 13s; content: "♩"; }
+    .note5 { left: 55%; animation-delay: 3s; animation-duration: 11s; content: "🎶"; }
+    .note6 { left: 70%; animation-delay: 5s; animation-duration: 15s; content: "♪"; }
+    .note7 { left: 85%; animation-delay: 2.5s; animation-duration: 12.5s; content: "♬"; }
+    .note8 { left: 12%; animation-delay: 6s; animation-duration: 13.5s; content: "🎵"; }
+    .note9 { left: 32%; animation-delay: 7s; animation-duration: 14s; content: "♫"; }
+    .note10 { left: 48%; animation-delay: 8s; animation-duration: 11.5s; content: "🎶"; }
+    .note11 { left: 63%; animation-delay: 3.5s; animation-duration: 12s; content: "♪"; }
+    .note12 { left: 78%; animation-delay: 5.5s; animation-duration: 13s; content: "♩"; }
+
+    /* star twinkle overlay */
+    .starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      width: 2px;
+      height: 2px;
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 6px #fff; }
+    }
+
+    .star1 { top: 8%; left: 12%; animation-delay: 0s; }
+    .star2 { top: 20%; left: 85%; animation-delay: 0.5s; width: 3px; height: 3px; }
+    .star3 { top: 45%; left: 25%; animation-delay: 1s; }
+    .star4 { top: 60%; left: 92%; animation-delay: 1.5s; width: 2px; }
+    .star5 { top: 75%; left: 38%; animation-delay: 0.3s; width: 2px; }
+    .star6 { top: 15%; left: 55%; animation-delay: 0.8s; }
+    .star7 { top: 90%; left: 70%; animation-delay: 1.2s; width: 3px; }
+    .star8 { top: 33%; left: 8%; animation-delay: 1.8s; }
+    .star9 { top: 55%; left: 45%; animation-delay: 0.2s; width: 2px; }
+    .star10 { top: 82%; left: 18%; animation-delay: 1.1s; }
+
+    /* ========== MAIN LOGIN CARD ========== */
+    .login-container {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      max-width: 460px;
+      margin: 1.5rem;
+      animation: cardFloatIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    @keyframes cardFloatIn {
+      0% {
+        opacity: 0;
+        transform: translateY(60px) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .glass-card {
+      background: rgba(8, 8, 25, 0.55);
+      backdrop-filter: blur(20px);
+      border-radius: 48px;
+      padding: 2.2rem 2rem;
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 0.5px rgba(139, 92, 246, 0.3);
+      transition: all 0.4s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 40px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(139, 92, 246, 0.7);
+      background: rgba(10, 10, 32, 0.65);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      border-radius: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+      animation: iconGlow 2.5s infinite alternate;
+    }
+
+    @keyframes iconGlow {
+      0% { box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3); transform: scale(1); }
+      100% { box-shadow: 0 15px 30px rgba(139, 92, 246, 0.7); transform: scale(1.02); }
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #ffffff, #c084fc, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .sub {
+      color: #b9c3e0;
+      font-size: 0.85rem;
+      margin-top: 6px;
+      opacity: 0.9;
+    }
+
+    .input-field {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-field label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      transition: 0.2s;
+    }
+
+    .input-field:hover label {
+      color: #c084fc;
+      transform: translateX(5px);
+    }
+
+    .input-field input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(139, 92, 246, 0.5);
+      border-radius: 60px;
+      font-size: 0.95rem;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .input-field input:focus {
+      border-color: #a78bfa;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
+      transform: scale(1.02);
+    }
+
+    .input-field input::placeholder {
+      color: #8f9bb5;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 1rem 0 1.8rem;
+      font-size: 0.8rem;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #cbd5e6;
+    }
+
+    .remember input {
+      accent-color: #8b5cf6;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .forgot a {
+      color: #c4b5fd;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .forgot a:hover {
+      color: #e9d5ff;
+      text-decoration: underline;
+    }
+
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(95deg, #6d28d9, #3b82f6);
+      border: none;
+      padding: 14px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    .login-btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .login-btn:hover::after {
+      left: 100%;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5);
+    }
+
+    .demo-cred {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 40px;
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #b9c3e0;
+      margin-bottom: 20px;
+      border: 1px dashed rgba(139, 92, 246, 0.5);
+    }
+
+    .signup-link {
+      text-align: center;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(139, 92, 246, 0.3);
+      padding-top: 18px;
+      color: #b9c3e0;
+    }
+
+    .signup-link a {
+      color: #c4b5fd;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 6px;
+      transition: 0.2s;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+      color: #e9d5ff;
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 40px;
+      padding: 6px 14px;
+      font-size: 0.7rem;
+      color: #c4b5fd;
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      transition: 0.2s;
+    }
+
+    .badge:hover {
+      background: rgba(139, 92, 246, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 550px) {
+      .glass-card {
+        padding: 1.8rem 1.3rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .options {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .wave-lines {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        margin: 1rem;
+      }
+      .glass-card {
+        border-radius: 36px;
+      }
+      .orb1, .orb2, .orb3 {
+        opacity: 0.2;
+      }
+    }
+
+    /* additional smooth effect */
+    .glass-card * {
+      transition: all 0.2s ease;
+    }
+    a{
+        text-decoration: none;
+    }
+  </style>
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+
+  <!-- animated dream background (pure CSS) -->
+  <div class="dream-bg"></div>
+
+  <!-- morphing orbs -->
+  <div class="morph-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="orb orb4"></div>
+  </div>
+
+  <!-- geometric shapes -->
+  <div class="geometric-figures">
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+  </div>
+
+  <!-- wave lines (music visualizer) -->
+  <div class="wave-lines">
+    <div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div>
+    <div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div>
+  </div>
+
+  <!-- dancing dust particles -->
+  <div class="dancing-dust">
+    <div class="dust dust1"></div><div class="dust dust2"></div><div class="dust dust3"></div>
+    <div class="dust dust4"></div><div class="dust dust5"></div><div class="dust dust6"></div>
+    <div class="dust dust7"></div><div class="dust dust8"></div><div class="dust dust9"></div>
+    <div class="dust dust10"></div>
+  </div>
+
+  <!-- floating musical notes -->
+  <div class="floating-notes">
+    <div class="note note1">♪</div><div class="note note2">♫</div><div class="note note3">🎵</div>
+    <div class="note note4">♩</div><div class="note note5">🎶</div><div class="note note6">♪</div>
+    <div class="note note7">♬</div><div class="note note8">🎵</div><div class="note note9">♫</div>
+    <div class="note note10">🎶</div><div class="note note11">♪</div><div class="note note12">♩</div>
+  </div>
+
+  <!-- twinkling stars -->
+  <div class="starfield">
+    <div class="star star1"></div><div class="star star2"></div><div class="star star3"></div>
+    <div class="star star4"></div><div class="star star5"></div><div class="star star6"></div>
+    <div class="star star7"></div><div class="star star8"></div><div class="star star9"></div>
+    <div class="star star10"></div>
+  </div>
+
+  <!-- main login card -->
+  <div class="login-container">
+    <div class="glass-card">
+      <div class="brand">
+        <div class="brand-icon">🎧</div>
+        <h1>VIBIO</h1>
+        <div class="sub">desi beats · global rhythm</div>
+      </div>
+
+      <form id="loginForm">
+        <div class="input-field">
+          <label><span>📧</span> Email address</label>
+          <input type="email" id="loginEmail" name="email" placeholder="you@vibio.com" required>
+        </div>
+        <div class="input-field">
+          <label><span>🔒</span> Password</label>
+          <input type="password" id="loginPassword" name="password" placeholder="··············" minlength="5" required>
+        </div>
+        <div id="error-message" style="color: #ef4444; font-size: 0.8rem; margin-bottom: 10px; display: none; text-align: center;"></div>
+
+        <div class="options">
+          <label class="remember">
+            <input type="checkbox" checked> Remember me
+          </label>
+          <div class="forgot"><a href="#">Forgot password?</a></div>
+        </div>
+        
+        <button type="submit" class="login-btn">
+            <span>✨</span> Sign In <span>✨</span>
+        </button>
+      </form>
+
+        <div class="demo-cred">
+          🎵 Demo: demo@vibio.com / welcome • experience the flow
+        </div>
+
+        <a href="NewSignUp.html"><div class="signup-link">
+          Don’t have an account? <a href="NewSignUp.html">Create now</a>
+        </div></a>
+
+        <div class="badge-row">
+          <span class="badge">🎧 Hi-Res Audio</span>
+          <span class="badge">📀 100M+ Songs</span>
+          <span class="badge">🌙 Mood Player</span>
+        </div>
+      
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const errorDiv = document.getElementById('error-message');
+
+      // Clear previous error
+      errorDiv.style.display = 'none';
+
+      // Demo login check
+      if (email === 'demo@vibio.com' && password === 'welcome') {
+        localStorage.setItem('vibio_current_user', JSON.stringify({
+          fullName: 'Demo User',
+          email: 'demo@vibio.com'
+        }));
+        window.location.href = 'vibio.html';
+        return;
+      }
+
+      // Check against stored users
+      const users = JSON.parse(localStorage.getItem('vibio_users') || '[]');
+      const user = users.find(u => u.email === email);
+
+      if (!user) {
+        errorDiv.textContent = '❌ No account found with this email!';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      if (user.password !== password) {
+        errorDiv.textContent = '❌ Incorrect password!';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      // Success
+      localStorage.setItem('vibio_current_user', JSON.stringify({
+        fullName: user.fullName,
+        email: user.email
+      }));
+      window.location.href = 'vibio.html';
+    });
+  </script>
+    <script src="theme.js"></script>
+</body>
+</html>

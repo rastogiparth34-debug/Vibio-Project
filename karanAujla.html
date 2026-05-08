@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Karan Aujla · Vibio Artist</title>
+    
+    <!-- Favicon (matches Vibio vibe) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0c12'/%3E%3Cpath d='M40 70 L40 30 L70 25 L70 55' stroke='%23c084fc' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='35' cy='72' r='8' fill='%2360a5fa'/%3E%3Ccircle cx='65' cy='58' r='8' fill='%23f59e0b'/%3E%3C/svg%3E">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: radial-gradient(circle at 20% 30%, #0a0c12, #030507);
+            --bg-card: rgba(18, 22, 32, 0.7);
+            --bg-card-hover: rgba(28, 33, 48, 0.9);
+            --text-primary: #edeef2;
+            --text-secondary: #a2adcf;
+            --text-muted: #8b92b0;
+            --gradient-start: #c084fc;
+            --gradient-end: #60a5fa;
+            --accent-gold: #f59e0b;
+        }
+
+        body {
+            background: var(--bg-primary);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .artist-page {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Back navigation */
+        .back-nav {
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(18, 22, 32, 0.8);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(192, 132, 252, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(192, 132, 252, 0.2);
+            color: white;
+            border-color: var(--gradient-start);
+            transform: translateX(-4px);
+        }
+
+        /* Hero Section */
+        .artist-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(192, 132, 252, 0.25);
+        }
+
+        .artist-avatar-large {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--gradient-start);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+        }
+
+        .artist-info-large h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .artist-bio {
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 0.75rem 0 1rem;
+            line-height: 1.4;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .stat {
+            background: rgba(96, 165, 250, 0.15);
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .section-title span {
+            font-size: 1.8rem;
+        }
+
+        /* Song Grid */
+        .song-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .song-card {
+            background: var(--bg-card);
+            border-radius: 1.2rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(192, 132, 252, 0.15);
+            cursor: pointer;
+        }
+
+        .song-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gradient-start);
+            transform: translateY(-3px);
+        }
+
+        .song-cover {
+            width: 70px;
+            height: 70px;
+            border-radius: 14px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .song-card:hover .song-cover {
+            transform: scale(1.02);
+        }
+
+        .song-details {
+            flex: 1;
+        }
+
+        .song-details h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            color: white;
+        }
+
+        .song-details p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .play-icon-small {
+            color: var(--gradient-start);
+            font-size: 1.4rem;
+            opacity: 0.6;
+            transition: 0.2s;
+            background: rgba(192,132,252,0.2);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .song-card:hover .play-icon-small {
+            opacity: 1;
+            transform: scale(1.05);
+            background: rgba(192,132,252,0.4);
+        }
+
+        /* Featured Player (Single Audio Tag) */
+        .featured-player {
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.2), rgba(96, 165, 250, 0.1));
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.8rem 0 2rem;
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .now-playing-badge {
+            background: var(--accent-gold);
+            color: #0a0c12;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .track-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 0.5rem;
+            border-radius: 40px;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(18, 22, 32, 0.9);
+        }
+
+        .note-text {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        hr {
+            border-color: rgba(192, 132, 252, 0.2);
+            margin: 1rem 0;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(79, 70, 229, 0.2);
+            padding-top: 1.5rem;
+        }
+
+        .reset-hint {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.65rem;
+            color: #a2adcf;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 680px) {
+            body { padding: 1rem; }
+            .artist-hero { flex-direction: column; text-align: center; }
+            .stats { justify-content: center; }
+            .artist-info-large h1 { font-size: 2.2rem; }
+            .artist-avatar-large { width: 140px; height: 140px; }
+            .song-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+    <div class="artist-page">
+        <!-- Back to main playlists -->
+        <div class="back-nav">
+            <a href="#" class="back-btn" onclick="window.history.back(); return false;">← Back to Vibio · Your Playlists</a>
+        </div>
+
+        <!-- Karan Aujla Hero Section -->
+        <div class="artist-hero">
+            <div class="artist-avatar-large" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKIqW4XT2Ke21VZEqswYz_fm6bff9jSZXUyg&s');"></div>
+            <div class="artist-info-large">
+                <h1>Karan Aujla</h1>
+                <div class="stats">
+                    <span class="stat">🎧 4.2M monthly listeners</span>
+                    <span class="stat">📀 8.7M followers</span>
+                    <span class="stat">🔥 12 hit singles</span>
+                </div>
+                <p class="artist-bio">Punjabi hip-hop sensation, lyricist, and powerhouse. Known for raw storytelling, addictive flows, and anthems that define modern Punjabi music. From "White Brown Black" to "52 Bars", Karan Aujla dominates charts worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Featured Audio Player (SINGLE AUDIO TAG - only one song: Wavy) -->
+        <div class="featured-player">
+            <div class="player-header">
+                <span class="now-playing-badge">🎵 EDITOR'S PICK</span>
+                <span class="track-name">💿 "Boyfriend" — Karan Aujla (Official Audio)</span>
+            </div>
+            <!-- ✅ SINGLE AUDIO TAG - only one song as per requirement -->
+            <audio controls loop>
+                <source src="Boyfriend (1).mp3" type="audio/mpeg">
+            </audio>
+            <p class="note-text">⭐ Featured global hit: "Wavy" — over 180M streams worldwide. Press play and enjoy.</p>
+        </div>
+
+        <div class="section-title">
+            <span>🎤</span> Essential Karan Aujla
+        </div>
+        <div class="song-grid">
+            <!-- Song 1: WAVY - Real album cover from official sources -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/XTp5jaRU3Ws/maxresdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>Wavy</h4>
+                    <p>2024 · Way Ahead · 3:12</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 2: SOFTLY - Real cover image from YouTube/Spotify -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/cWMxCE2HTag/maxresdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>Softly</h4>
+                    <p>2023 · Making Memories · 2:58</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 3: 52 BARS - Iconic track cover from Sndcdn -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/4DfVxVeqk2o/maxresdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>52 Bars</h4>
+                    <p>2021 · Bacthafucup · 3:34</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 4: WHITE BROWN BLACK - Official music video thumbnail (high quality) -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/BtQp2U6hJII/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLD4-jA0TZAePPXlzpsNGTaxsCqlQg');"></div>
+                <div class="song-details">
+                    <h4>White Brown Black</h4>
+                    <p>2022 · Way Ahead · 3:22</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 5: ADMIRIN' YOU - Feat. Prem Dhillon (real cover) -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://www.ilyricshub.com/wp-content/uploads/2023/08/admirin-you-karan-aujla.jpg');"></div>
+                <div class="song-details">
+                    <h4>Admirin' You</h4>
+                    <p>2023 · feat. Prem Dhillon · 3:07</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 6: ON TOP - Street anthem cover from YouTube -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/aFWDOFg7X2A/sddefault.jpg?v=67bce0c0');"></div>
+                <div class="song-details">
+                    <h4>On Top</h4>
+                    <p>2024 · Street Knowledge · 2:47</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+        </div>
+
+       
+        <!-- Latest Singles & Collaborations with REAL internet images -->
+        <div class="section-title">
+            <span>💿</span> Latest Singles & Collaborations
+        </div>
+        <div class="song-grid">
+            <!-- Song 13: TAUBA TAUBA - Viral hit -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/0VX7xIvqJRk/maxresdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>Tauba Tauba</h4>
+                    <p>2024 · Viral Sensation · 2:45</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 14: SIFAR SAFAR -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/sM7-oYA__fk/maxresdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>Sifar Safar</h4>
+                    <p>2023 · Emotional Drive · 3:52</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 15: JHANJAR -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/XULDXoFU1hQ/maxresdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>Daytona</h4>
+                    <p>2024 · Folk Fusion · 3:14</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+            
+            <!-- Song 16: YEAH BABY (Bonus hit) -->
+            <div class="song-card">
+                <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/RWO1x4KRjA0/mqdefault.jpg');"></div>
+                <div class="song-details">
+                    <h4>Yeah Baby</h4>
+                    <p>2024 · Way Ahead · 2:58</p>
+                </div>
+                <div class="play-icon-small">▶</div>
+            </div>
+        </div>
+
+        <!-- Similar artists & footer -->
+        <hr>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin: 1.5rem 0;">
+            <div style="background: rgba(96,165,250,0.1); border-radius: 2rem; padding: 0.8rem 1.2rem;">
+                <span style="color: #c084fc;">🎧</span> <strong>If you like Karan Aujla, explore:</strong> Diljit Dosanjh · Shubh · AP Dhillon · Gurinder Gill
+            </div>
+            <div style="font-size: 0.7rem; color: var(--text-muted);">
+                ⚡ 10+ million monthly streams on Vibio
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Vibio — Artist Focus: Karan Aujla. All song images are real internet URLs (album arts, YouTube thumbnails, official covers).</p>
+            <p style="margin-top: 0.3rem;">🎵 Real tracks: Wavy, Softly, 52 Bars, White Brown Black, Admirin' You, Tauba Tauba & more with authentic cover images.</p>
+               </div>
+    </div>
+
+    <script src="theme.js"></script>
+</body>
+</html>

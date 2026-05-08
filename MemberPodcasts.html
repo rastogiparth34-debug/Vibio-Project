@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Space - Vibio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="search.css">
+    <style>
+        body {
+            background: #050510;
+            color: #edeef2;
+            min-height: 100vh;
+        }
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .creator-banner {
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.1), rgba(96, 165, 250, 0.1));
+            border-radius: 30px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .creator-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+        .creator-details h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .creator-details p {
+            color: #a2adcf;
+            font-size: 1.1rem;
+        }
+        .episode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .podcast-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+        .podcast-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(192, 132, 252, 0.3);
+        }
+        .podcast-cover {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            background-size: cover;
+            background-position: center;
+        }
+        .play-overlay {
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; height: 280px; /* Adjust based on aspect-ratio */
+            background: rgba(0,0,0,0.4);
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 12px;
+            opacity: 0;
+            transition: 0.2s;
+            font-size: 3rem;
+        }
+        .podcast-card:hover .play-overlay { opacity: 1; }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #c084fc;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <a href="Podcasts.html" class="back-btn">← Back to Podcasts</a>
+        
+        <div class="creator-banner">
+            <img id="creator-img" src="" alt="Creator" class="creator-img">
+            <div class="creator-details">
+                <h1 id="creator-name">Loading...</h1>
+                <p id="creator-bio">Featured Creator episodes on Vibio Premium</p>
+            </div>
+        </div>
+
+        <h2 style="margin-bottom: 30px;">Recent Episodes</h2>
+        <div id="episode-grid" class="episode-grid">
+            <!-- Loading state -->
+            <div style="color: #a2adcf;">Fetching latest episodes...</div>
+        </div>
+    </div>
+
+    <script src="podcast_manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const creator = params.get('creator');
+            
+            if (!creator) {
+                window.location.href = 'Podcasts.html';
+                return;
+            }
+
+            document.getElementById('creator-name').textContent = creator;
+            document.title = `${creator} - Vibio Podcasts`;
+
+            // Setup Player (Copied premium player from podcast_search.js)
+            const playerHtml = `
+                <div id="podcast-audio-player" style="position: fixed; bottom: -150px; left: 50%; transform: translateX(-50%); background: rgba(18,22,32,0.95); backdrop-filter: blur(25px); border: 1px solid rgba(192, 132, 252, 0.5); border-radius: 30px; padding: 15px 25px; display: flex; align-items: center; gap: 20px; z-index: 10000; transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 20px 50px rgba(0,0,0,0.6); width: 95%; max-width: 800px;">
+                    <img id="pod-audio-img" src="" style="width: 60px; height: 60px; border-radius: 12px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.4);">
+                    <div style="flex: 0 1 200px; min-width: 150px;">
+                        <div id="pod-audio-title" style="font-weight: 700; color: #fff; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Title</div>
+                        <div id="pod-audio-artist" style="color: #c084fc; font-size: 0.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Artist</div>
+                    </div>
+                    <div id="pod-audio-controls" style="flex: 1; display: flex; align-items: center; gap: 15px;">
+                        <button id="pod-play-pause" style="background: linear-gradient(135deg, #c084fc, #60a5fa); border: none; width: 45px; height: 45px; border-radius: 50%; color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">▶</button>
+                        <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+                            <span id="pod-current-time" style="font-size: 0.75rem; color: #a2adcf; min-width: 35px;">0:00</span>
+                            <input type="range" id="pod-seek-slider" value="0" max="100" style="flex: 1; -webkit-appearance: none; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; outline: none; cursor: pointer;">
+                            <span id="pod-total-duration" style="font-size: 0.75rem; color: #a2adcf; min-width: 35px;">0:00</span>
+                        </div>
+                    </div>
+                    <audio id="pod-audio-element"></audio>
+                    <button id="pod-audio-close" style="background: transparent; border: none; color: #ef4444; font-size: 1.5rem; cursor: pointer;">✖</button>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', playerHtml);
+
+            const player = document.getElementById('podcast-audio-player');
+            const audio = document.getElementById('pod-audio-element');
+            const playPauseBtn = document.getElementById('pod-play-pause');
+            const seekSlider = document.getElementById('pod-seek-slider');
+            const currentTimeText = document.getElementById('pod-current-time');
+            const durationText = document.getElementById('pod-total-duration');
+            
+            function formatTime(s) {
+                if (isNaN(s)) return "0:00";
+                const m = Math.floor(s/60);
+                const sc = Math.floor(s%60);
+                return `${m}:${sc < 10 ? '0' : ''}${sc}`;
+            }
+
+            audio.addEventListener('timeupdate', () => {
+                if(!seekSlider.classList.contains('seeking')) {
+                    seekSlider.value = audio.currentTime;
+                    currentTimeText.textContent = formatTime(audio.currentTime);
+                    const p = (audio.currentTime / audio.duration) * 100;
+                    seekSlider.style.background = `linear-gradient(to right, #c084fc ${p}%, rgba(255,255,255,0.1) ${p}%)`;
+                }
+            });
+
+            audio.addEventListener('loadedmetadata', () => {
+                seekSlider.max = audio.duration;
+                durationText.textContent = formatTime(audio.duration);
+            });
+
+            playPauseBtn.addEventListener('click', () => {
+                if(audio.paused) {
+                    if (audio.src) audio.play().catch(e => console.log("Playback failed"));
+                } else {
+                    audio.pause();
+                }
+            });
+
+            audio.addEventListener('play', () => {
+                playPauseBtn.textContent = '⏸';
+                playPauseBtn.style.background = 'linear-gradient(135deg, #ef4444, #f87171)'; // Change color when playing
+            });
+
+            audio.addEventListener('pause', () => {
+                playPauseBtn.textContent = '▶';
+                playPauseBtn.style.background = 'linear-gradient(135deg, #c084fc, #60a5fa)';
+            });
+
+            audio.addEventListener('waiting', () => {
+                playPauseBtn.textContent = '⏳';
+            });
+
+            audio.addEventListener('playing', () => {
+                playPauseBtn.textContent = '⏸';
+            });
+
+            document.getElementById('pod-audio-close').onclick = () => {
+                audio.pause();
+                player.style.bottom = '-150px';
+            };
+
+            // Fetch Episodes
+            try {
+                const response = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(creator)}&entity=podcastEpisode&limit=15`);
+                const data = await response.json();
+                const grid = document.getElementById('episode-grid');
+                grid.innerHTML = '';
+
+                if (data.results.length > 0) {
+                    // Set the banner image to the highest quality creator artwork
+                    document.getElementById('creator-img').src = data.results[0].artworkUrl600 || data.results[0].artworkUrl100;
+                    
+                    data.results.forEach(ep => {
+                        const isFav = window.PodcastManager.isFavorite(ep.trackId || ep.collectionId);
+                        const card = document.createElement('div');
+                        card.className = 'podcast-card';
+                        card.innerHTML = `
+                            <div class="podcast-cover" style="background-image: url('${ep.artworkUrl600 || ep.artworkUrl160}');">
+                                <div class="play-overlay">▶</div>
+                            </div>
+                            <div class="podcast-info">
+                                <h3 title="${ep.trackName}">${ep.trackName}</h3>
+                                <p>${ep.collectionName}</p>
+                            </div>
+                            <button class="fav-btn ${isFav ? 'active' : ''}" 
+                                    style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; cursor: pointer; font-weight: 600; margin-top: 10px; transition: all 0.2s;"
+                                    onclick="event.stopPropagation(); toggleEpisodeFavorite(this, ${JSON.stringify(ep).replace(/"/g, '&quot;')})">
+                                ${isFav ? '❤️ Favorited' : '🤍 Favorite'}
+                            </button>
+                        `;
+
+                        card.onclick = () => {
+                            const highResImg = ep.artworkUrl600 || ep.artworkUrl100;
+                            document.getElementById('pod-audio-img').src = highResImg;
+                            document.getElementById('pod-audio-title').textContent = ep.trackName;
+                            document.getElementById('pod-audio-artist').textContent = ep.collectionName;
+                            
+                            // Reset slider
+                            seekSlider.value = 0;
+                            seekSlider.style.background = `rgba(255, 255, 255, 0.1)`;
+                            
+                            audio.src = ep.episodeUrl || ep.previewUrl;
+                            player.style.bottom = '30px';
+                            audio.play().catch(e => {
+                                playPauseBtn.textContent = '▶';
+                            });
+                        };
+                        grid.appendChild(card);
+                    });
+                } else {
+                    grid.innerHTML = '<div style="color: #a2adcf; padding: 40px; text-align: center; grid-column: 1/-1;">No episodes found for this creator.</div>';
+                }
+            } catch (err) {
+                grid.innerHTML = '<div style="color: #ef4444; padding: 40px; text-align: center; grid-column: 1/-1;">Failed to load episodes. Please check your connection.</div>';
+            }
+        });
+
+        function toggleEpisodeFavorite(btn, ep) {
+            const uniqueId = ep.trackId || ep.collectionId;
+            if (window.PodcastManager.isFavorite(uniqueId)) {
+                window.PodcastManager.removeFavorite(uniqueId);
+                btn.innerHTML = '🤍 Favorite';
+                btn.classList.remove('active');
+                btn.style.borderColor = 'rgba(255,255,255,0.1)';
+                btn.style.color = '#fff';
+            } else {
+                const podData = {
+                    trackId: ep.trackId,
+                    collectionId: ep.collectionId,
+                    collectionName: ep.collectionName,
+                    artistName: ep.artistName || ep.collectionName,
+                    artworkUrl: ep.artworkUrl600 || ep.artworkUrl100,
+                    feedUrl: ep.feedUrl,
+                    audioUrl: ep.episodeUrl || ep.previewUrl,
+                    trackName: ep.trackName
+                };
+                window.PodcastManager.addFavorite(podData);
+                btn.innerHTML = '❤️ Favorited';
+                btn.classList.add('active');
+                btn.style.borderColor = '#ef4444';
+                btn.style.color = '#ef4444';
+            }
+        }
+    </script>
+</body>
+</html>

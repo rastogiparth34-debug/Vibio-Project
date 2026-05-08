@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vibio - Desi Beats Streaming</title>
+     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0c12'/%3E%3Ccircle cx='50' cy='50' r='42' fill='none' stroke='%23c084fc' stroke-width='3'/%3E%3Cpath d='M45 68 L45 38 L65 34 L65 50' stroke='%2360a5fa' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='42' cy='70' r='6' fill='%23f59e0b'/%3E%3Ccircle cx='62' cy='53' r='6' fill='%23c084fc'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="search.css">
+</head>
+<body>
+    <div class="animation-overlay">
+        <div class="animation-content">
+            <div class="vibio-logo-animate">VIBIO</div>
+            <div class="tagline-animate">desi beats • pure vibes</div>
+            <div class="music-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+<div class="app">
+    <div class="header">
+        <div class="logo">
+            <span>🎧</span> VIBIO
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="Playlist.html">Playlists</a>
+            <a href="Podcasts.html">🎙️ Podcasts</a>
+            <a href="Poem.html">📜 Poems</a>
+        </div>
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search desi hits, artists...">
+        </div>
+        <div class="auth-buttons">
+             <a href="newLoginPage.html"><button class="btn-login">Log in</button></a> 
+            <a href="NewSignUp.html"><button class="btn-signup">Sign up</button></a>
+        </div>
+    </div>
+    
+    <!-- Immersive Search Results Section -->
+    <div id="search-results-overlay" class="search-overlay">
+        <div class="search-overlay-header">
+            <h2 id="search-query-display">Search Results</h2>
+            <button id="close-search-btn" class="close-search">✖ Close</button>
+        </div>
+        <div id="search-results-grid" class="search-results-grid"></div>
+    </div>
+
+    <!-- TRENDING DESI BEATS -->
+    <div class="section-header">
+        <h3 id="library">🎵 Trending  Beats</h3>
+        <a href="#">more tracks →</a>
+    </div>
+    <div class="cards-grid">
+        <div class="music-card" data-src="Tu Hai Kahan-(SambalpuriStar.In) (1).mp3" data-title="Tu Hai Kahan" data-artist="Ahad Khan" data-img="https://i.ytimg.com/vi/AX6OrbgS8lI/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/AX6OrbgS8lI/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Tu Hai Kahan <span class="badge-new">HIT</span></h4>
+            <p>Ahad Khan</p>
+            <div class="play-badge">▶ 213M plays</div>
+        </div>
+        <div class="music-card" data-src="Aaj Ki Raat-(SambalpuriStar.In) (1).mp3" data-title="Aaj ki raat" data-artist="Tamannaah Bhatia" data-img="https://i.ytimg.com/vi/roz9sXFkTuE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBg91j7ebK5OK2dAO717BtCQTC03A">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/roz9sXFkTuE/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBg91j7ebK5OK2dAO717BtCQTC03A');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Aaj ki raat</h4>
+            <p>Tamannaah Bhatia</p>
+            <div class="play-badge">▶ 1Billion+ plays</div>
+        </div>
+        <div class="music-card" data-src="Victory Anthem-(SambalpuriStar.In) (1).mp3" data-title="Victory Anthem" data-artist="Khushi" data-img="https://i.ytimg.com/vi/oyt4Ms7mj_o/sddefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/oyt4Ms7mj_o/sddefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Victory Anthem</h4>
+            <p>Khushi</p>
+            <div class="play-badge">▶ 39M plays</div>
+        </div>
+        <div class="music-card" data-src="Excuses (1).mp3" data-title="Excuses" data-artist="AP Dhillon" data-img="https://i.ytimg.com/vi/x18b0D8sTwo/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/x18b0D8sTwo/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Excuses</h4>
+            <p>AP Dhillon</p>
+            <div class="play-badge">▶ 153M plays</div>
+        </div>
+        <div class="music-card" data-src="Pasoori-(SambalpuriStar.In) (1).mp3" data-title="Passori" data-artist="Ali Sethi" data-img="https://i.ytimg.com/vi/5Eqb_-j3FDA/maxresdefault.jpg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/5Eqb_-j3FDA/maxresdefault.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Passori</h4>
+            <p>Ali Sethi</p>
+            <div class="play-badge">▶ 943M plays</div>
+        </div>
+        <div class="music-card" data-src="Russian Bandana Dhanda Nyoliwala 320 Kbps (1).mp3" data-title="Russian Bandana" data-artist="Dhandi Nyoliwala" data-img="https://i1.sndcdn.com/artworks-BQfkak3OtcyMi1ld-BgXW6Q-t1080x1080.jpg">
+            <div class="card-img" style="background-image: url('https://i1.sndcdn.com/artworks-BQfkak3OtcyMi1ld-BgXW6Q-t1080x1080.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Russian Bandana</h4>
+            <p>Dhandi Nyoliwala</p>
+            <div class="play-badge">▶ 395M plays</div>
+        </div>
+    </div>
+
+    <!-- VIBE STATIONS with actual playable audio -->
+    <div class="section-header">
+        <h3>🔥 desi vibe stations</h3>
+        <a href="#">explore all →</a>
+    </div>
+    <div class="playlist-scroll">
+        <!-- Station 1: Punjabi Swag -->
+        <div class="playlist-station">
+            <a href="punjaiSwagMainPage.html" style="text-decoration: none;">
+                <div class="station-header">
+                    <div class="station-emoji">🦅</div>
+                    <div class="station-title">Punjabi Swag</div>
+                </div>
+            </a>
+            <div class="station-songs">
+                <div class="station-song-item" data-src="Goat - Djjohal.fm (1).mp3" data-title="Top 50 Punjabi Songs" data-artist="Sidhu Moosewala" data-img="https://i.pinimg.com/736x/34/e1/a1/34e1a10894d62bce16ac68a92e98931e.jpg">
+                    <div class="song-thumb" style="background-image: url('https://i.pinimg.com/736x/34/e1/a1/34e1a10894d62bce16ac68a92e98931e.jpg');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Top 50 Punjabi Songs</div>
+                        <div class="artist-name">Sidhu Moosewala</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+                <div class="station-song-item" data-src="Boyfriend (1).mp3" data-title="P pop Culture" data-artist="Karan Aujla" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKIqW4XT2Ke21VZEqswYz_fm6bff9jSZXUyg&s">
+                    <div class="song-thumb" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKIqW4XT2Ke21VZEqswYz_fm6bff9jSZXUyg&s');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">P pop Culture</div>
+                        <div class="artist-name">Karan Aujla</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+                <div class="station-song-item" data-src="Brown Rang - Yo Yo Honey Singh (1).mp3" data-title="Brown rang" data-artist="Honey singh or Badshah" data-img="https://upload.wikimedia.org/wikipedia/en/4/44/Brown_Rang_song.jpg">
+                    <div class="song-thumb" style="background-image: url('https://upload.wikimedia.org/wikipedia/en/4/44/Brown_Rang_song.jpg');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Brown rang</div>
+                        <div class="artist-name">Honey singh or Badshah</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+            </div>
+        </div>
+        <!-- Station 2: Haryanvi Power -->
+        <div class="playlist-station">
+            <div class="station-header">
+                <div class="station-emoji">💪</div>
+                <div class="station-title">Haryanvi Power</div>
+            </div>
+            <div class="station-songs">
+                <div class="station-song-item" data-src="https://cdn.pixabay.com/download/audio/2022/03/17/audio_9d29e8e5e3.mp3?filename=desi-beat-111447.mp3" data-title="2 Khatole" data-artist="Masoom Sharma" data-img="https://source.boomplaymusic.com/group10/M00/02/15/c156b3e5ff8d41a48187e0d3224f4295H3000W3000_464_464.jpg">
+                    <div class="song-thumb" style="background-image: url('https://source.boomplaymusic.com/group10/M00/02/15/c156b3e5ff8d41a48187e0d3224f4295H3000W3000_464_464.jpg');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">2 Khatole</div>
+                        <div class="artist-name">Masoom Sharma</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+                <div class="station-song-item" data-src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_bb61fbaf94.mp3?filename=indian-drums-13637.mp3" data-title="Chambal ke Daku" data-artist="Masoom Sharma" data-img="https://source.boomplaymusic.com/group10/M00/10/18/55d5b45e6bca497e9c99380e604ac42eH3000W3000_464_464.jpg">
+                    <div class="song-thumb" style="background-image: url('https://source.boomplaymusic.com/group10/M00/10/18/55d5b45e6bca497e9c99380e604ac42eH3000W3000_464_464.jpg');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Chambal ke Daku</div>
+                        <div class="artist-name">Masoom Sharma</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+                <div class="station-song-item" data-src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_fb627f0b3a.mp3?filename=dhol-tasha-110230.mp3" data-title="Jaat Anthem" data-artist="Dhanda Nyoliwala" data-img="https://i.scdn.co/image/ab6761610000e5eb816ad67bfe38d59ad0bc3a88">
+                    <div class="song-thumb" style="background-image: url('https://i.scdn.co/image/ab6761610000e5eb816ad67bfe38d59ad0bc3a88');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Jaat Anthem</div>
+                        <div class="artist-name">Dhanda Nyoliwala</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+            </div>
+        </div>
+        <!-- Station 3: Bollywood Hindi -->
+        <div class="playlist-station">
+            <div class="station-header">
+                <div class="station-emoji">🎬</div>
+                <div class="station-title">Bollywood Hindi</div>
+            </div>
+            <div class="station-songs">
+                <div class="station-song-item" data-src="Chanakya-By-Rishabh-Sharma (1).mp3" data-title="Chanakya" data-artist="Rishabh Rikhiram Sharma" data-img="https://assets.telegraphindia.com/telegraph/2024/Oct/1730382963_listen.jpg">
+                    <div class="song-thumb" style="background-image: url('https://assets.telegraphindia.com/telegraph/2024/Oct/1730382963_listen.jpg');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Chanakya</div>
+                        <div class="artist-name">Rishabh Rikhiram Sharma</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+                <div class="station-song-item" data-src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d3c2c9be29.mp3?filename=indian-melody-115979.mp3" data-title="Saiyara" data-artist="Taniskh Bagchi" data-img="https://i.ytimg.com/vi/1f2XnNykPJs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB5ix_UJEu_G7VVIwCPqEGlwxcULQ">
+                    <div class="song-thumb" style="background-image: url('https://i.ytimg.com/vi/1f2XnNykPJs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB5ix_UJEu_G7VVIwCPqEGlwxcULQ');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Saiyara</div>
+                        <div class="artist-name">Taniskh Bagchi</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+                <div class="station-song-item" data-src="https://cdn.pixabay.com/download/audio/2022/06/01/audio_66b02af91a.mp3?filename=indian-classical-13756.mp3" data-title="Shararat" data-artist="Jasmine Sandles" data-img="https://c.saavncdn.com/532/Shararat-From-Dhurandhar-Hindi-2025-20251215084216-500x500.jpg">
+                    <div class="song-thumb" style="background-image: url('https://c.saavncdn.com/532/Shararat-From-Dhurandhar-Hindi-2025-20251215084216-500x500.jpg');"></div>
+                    <div class="song-info-mini">
+                        <div class="song-name">Shararat</div>
+                        <div class="artist-name">Jasmine Sandles</div>
+                    </div>
+                    <div class="station-play-btn">▶</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRESH DROPS -->
+    <div class="section-header">
+        <h3>🪐 just dropped: desi flavor</h3>
+        <a href="#">new arrivals →</a>
+    </div>
+    <div class="cards-grid">
+        <div class="music-card" data-src="Bairan Banjaare (pagalall.com) (1).mp3" data-title="Bairan" data-artist="Banjaree" data-img="https://djbaap.com.se/covers/bairan.webp">
+            <div class="card-img" style="background-image: url('https://djbaap.com.se/covers/bairan.webp');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Bairan <span class="badge-new">NEW</span></h4>
+            <p>Banjaree</p>
+            <div class="play-badge">✨ fresh release</div>
+        </div>
+        <div class="music-card" data-src="Ramba Ho (PenduJatt.Com.Se) (1).mp3" data-title="Ramba Ho" data-artist="Shashwat Sachdeva" data-img="https://i.ytimg.com/vi/F1jwjElaKKc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARbflKz1omGNlensNqfa38znRaWg">
+            <div class="card-img" style="background-image: url('https://i.ytimg.com/vi/F1jwjElaKKc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARbflKz1omGNlensNqfa38znRaWg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Ramba Ho</h4>
+            <p>Shashwat Sachdeva</p>
+            <div class="play-badge">🔥 trending</div>
+        </div>
+        <div class="music-card" data-src="Charmer - Diljit Dosanjh (1).mp3" data-title="Charmer" data-artist="Diljit Dosanjh" data-img="https://www.bollywoodhungama.com/wp-content/uploads/2025/10/Diljit-Dosanjh-and-Sanya-Malhotra-mesmerize-in-%E2%80%98Charmer-watch-feautres.jpg">
+            <div class="card-img" style="background-image: url('https://www.bollywoodhungama.com/wp-content/uploads/2025/10/Diljit-Dosanjh-and-Sanya-Malhotra-mesmerize-in-%E2%80%98Charmer-watch-feautres.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Charmer</h4>
+            <p>Diljit Dosanjh</p>
+            <div class="play-badge">🎵 Hot</div>
+        </div>
+        <div class="music-card" data-src="Raanjhan Do Patti 320 Kbps (1).mp3" data-title="Raanjhan" data-artist="Kriti Sanon" data-img="https://c.saavncdn.com/915/Raanjhan-From-Do-Patti-Hindi-2024-20241004153945-500x500.jpg">
+            <div class="card-img" style="background-image: url('https://c.saavncdn.com/915/Raanjhan-From-Do-Patti-Hindi-2024-20241004153945-500x500.jpg');">
+                <div class="play-overlay">▶</div>
+            </div>
+            <h4>Raanjhan</h4>
+            <p>Kriti Sanon</p>
+            <div class="play-badge">⚡ Bomb</div>
+        </div>
+    </div>
+
+    <!-- Featured Daily Mix
+    <div class="now-playing-section">
+        <div class="featured-track">
+            <div class="featured-art" style="background-image: url('https://images.pexels.com/photos/1389429/pexels-photo-1389429.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop');"></div>
+            <div class="featured-info">
+                <span class="play-badge" style="background: #4f46e5;">🌟 desi mix of the day</span>
+                <h4>Punjabi 101 • Nonstop</h4>
+                <p>Bhangra, Folk, Bollywood</p>
+            </div>
+        </div>
+        <div class="featured-audio">
+            <audio controls autoplay loop>
+                <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d3c2c9be29.mp3?filename=bhangra-115978.mp3" type="audio/mpeg">
+            </audio>
+            <div style="font-size: 0.7rem; color: #a78bfa; margin-top: 0.3rem;">✨ daily rotation — authentic desi beats</div>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="attribution">
+        🎵 All music provided by <a href="https://pixabay.com/music/" target="_blank">Pixabay Music</a> under royalty-free license. Images from Pexels.
+    </div> -->
+
+     <!-- CLEAN FOOTER SECTION -->
+    <div class="footer-section">
+        <div class="premium-card">
+            <div class="premium-content">
+                <div class="premium-badge">PREMIUM</div>
+                <h3>Elevate Your Soul with Vibio Premium</h3>
+                <p>Unlock exclusive poetry collections, ad-free high-fidelity audio, and curated spiritual vibes. Join the elite community of music and art lovers.</p>
+                <div class="premium-features">
+                    <span>✨ Unlimited Poems</span>
+                    <span>🎧 Hi-Res Audio</span>
+                    <span>🚫 No Ads</span>
+                </div>
+                <div class="premium-action">
+                    <button id="subscribeNowBtn" class="btn-premium-action">Subscribe & Unlock Now</button>
+                    <p class="premium-meta">Only $9.99/mo. Cancel anytime.</p>
+                </div>
+            </div>
+            <div class="premium-visual">
+                <!-- Abstract visual element created with CSS -->
+                <div class="visual-circle"></div>
+                <div class="visual-circle small"></div>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Vibio</h4>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="#">For Artists</a>
+                <a href="#">Developers</a>
+                <a href="#">Merchandise</a>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <div class="social-icon">📱</div>
+                    <div class="social-icon">🎵</div>
+                    <div class="social-icon">🎧</div>
+                    <div class="social-icon">⭐</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            © 2026 Vibio Music Streaming — Desi Beats. All rights reserved.
+        </div>
+        <div class="attribution">
+            🎵 Music provided by <a href="https://pixabay.com/music/" target="_blank">Pixabay Music</a> (royalty-free). Images from Pexels.
+        </div>
+    </div>
+    <script src="auth_greeting.js"></script>
+    <script src="theme.js"></script>
+    <script src="playlist_manager.js"></script>
+    <script src="search.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const subscribeBtn = document.getElementById('subscribeNowBtn');
+            const isSubscribed = localStorage.getItem('vibio_subscribed') === 'true';
+
+            if (isSubscribed && subscribeBtn) {
+                subscribeBtn.textContent = 'You are a Premium Member ✨';
+                subscribeBtn.classList.add('active');
+                subscribeBtn.style.background = 'linear-gradient(135deg, #4ade80, #3b82f6)';
+            }
+
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', () => {
+                    if (localStorage.getItem('vibio_subscribed') === 'true') {
+                        window.location.href = 'Poem.html';
+                        return;
+                    }
+
+                    // Simulate subscription process
+                    subscribeBtn.textContent = 'Processing...';
+                    subscribeBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        localStorage.setItem('vibio_subscribed', 'true');
+                        subscribeBtn.textContent = 'Welcome to Premium! ✨';
+                        subscribeBtn.disabled = false;
+                        subscribeBtn.style.background = 'linear-gradient(135deg, #4ade80, #3b82f6)';
+                        
+                        // Show a little success feedback before redirecting
+                        setTimeout(() => {
+                            window.location.href = 'Poem.html';
+                        }, 800);
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

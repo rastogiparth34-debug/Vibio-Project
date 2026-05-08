@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Vibio - Punjabi Bhangra Mix</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0c12'/%3E%3Cpath d='M40 70 L40 30 L70 25 L70 55' stroke='%23c084fc' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='35' cy='72' r='8' fill='%2360a5fa'/%3E%3Ccircle cx='65' cy='58' r='8' fill='%23f59e0b'/%3E%3C/svg%3E">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0c12, #030507);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #edeef2;
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 1px solid #c084fc;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            color: #c084fc;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: #c084fc;
+            color: white;
+        }
+
+        /* Playlist Hero */
+        .hero {
+            background: linear-gradient(135deg, rgba(79,70,229,0.2), rgba(124,58,237,0.1));
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .cover {
+            width: 140px;
+            height: 140px;
+            border-radius: 1rem;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .badge {
+            background: #c084fc;
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info p {
+            color: #a2adcf;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.7rem;
+            color: #a2adcf;
+        }
+
+        /* Songs Section */
+        .songs-section {
+            background: rgba(18, 22, 32, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.3);
+        }
+
+        /* Song List */
+        .song-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0.8rem;
+            background: rgba(18, 22, 32, 0.4);
+            border-radius: 0.6rem;
+            transition: all 0.2s ease;
+        }
+
+        .song-item:hover {
+            background: rgba(79, 70, 229, 0.2);
+        }
+
+        .song-number {
+            width: 28px;
+            color: #8b92b0;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .song-cover, .song-thumb {
+            width: 38px;
+            height: 38px;
+            border-radius: 0.4rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .song-details, .song-info-text {
+            flex: 1;
+        }
+
+        .song-details h4, .song-title-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+
+        .song-details p, .song-artist-text {
+            font-size: 0.65rem;
+            color: #a2adcf;
+        }
+
+        .song-duration {
+            font-size: 0.7rem;
+            color: #8b92b0;
+            min-width: 45px;
+            text-align: right;
+        }
+
+        /* Play Button - Simple Link to Audio Player */
+        .play-link {
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            color: white;
+            text-decoration: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .play-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+        }
+
+        /* Now Playing Bar - Spotify Style */
+        .now-playing {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 12, 18, 0.98);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #c084fc;
+            padding: 0.6rem 2rem;
+            z-index: 100;
+        }
+
+        .player-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            min-width: 180px;
+        }
+
+        .track-art {
+            width: 40px;
+            height: 40px;
+            border-radius: 0.4rem;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .track-details h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .track-details p {
+            font-size: 0.6rem;
+            color: #a2adcf;
+        }
+
+        .audio-player {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            height: 36px;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: #1e1f2e;
+        }
+        
+        audio::-webkit-media-controls-play-button {
+            background-color: #c084fc;
+            border-radius: 50%;
+        }
+        
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: white;
+            font-size: 0.7rem;
+        }
+
+        .song-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .hero { flex-direction: column; text-align: center; }
+            .stats { justify-content: center; }
+            .now-playing { padding: 0.6rem 1rem; }
+            .player-container { flex-direction: column; gap: 0.5rem; }
+            .track-info { width: 100%; justify-content: center; }
+            .audio-player { width: 100%; max-width: 100%; }
+        }
+    </style>
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <a href="vibio.html" class="logo">
+                <span>🎧</span> VIBIO
+            </a>
+            <a href="Playlist.html" class="back-btn">← Back</a>
+        </div>
+
+        <!-- Playlist Hero -->
+        <div class="hero">
+            <div class="cover" style="background-image: url('https://i1.sndcdn.com/artworks-Opev8u0PedWuKJ3N-OMCSEA-t500x500.jpg');"></div>
+            <div class="info">
+                <span class="badge">🪘 PLAYLIST</span>
+                <h1>Top 50 Punjabi Songs</h1>
+                <p class="playlist-description">Best Punjabi hits • 10 songs • 35 min</p>
+                <div class="stats playlist-meta">
+                    <span>❤️ 124K likes</span>
+                    <span>📀 Updated today</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Songs Section -->
+        <div class="songs-section">
+            <div class="section-title">🎵 Songs</div>
+            <div class="song-list">
+                <!-- Songs will be injected here if a custom playlist is viewed -->
+                <div class="song-item">
+                    <div class="song-number">1</div>
+                    <div class="song-cover" style="background-image: url('https://i.ytimg.com/vi/x18b0D8sTwo/maxresdefault.jpg');"></div>
+                    <div class="song-details">
+                        <h4>Excuses</h4>
+                        <p>AP Dhillon, Gurinder Gill</p>
+                    </div>
+                    <div class="song-duration">3:04</div>
+                    <a href="#" class="play-link">▶ Play</a>
+                </div>
+                <!-- ... more hardcoded songs for default view ... -->
+            </div>
+        </div>
+
+        <!-- Recommended Playlists -->
+        <div class="section-title" style="margin-top: 1.5rem;">🎧 You Might Also Like</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(18, 22, 32, 0.5); border-radius: 0.8rem; padding: 0.7rem; transition: all 0.2s ease;">
+                <div style="width: 100%; aspect-ratio: 1; border-radius: 0.6rem; background-image: url('https://images.pexels.com/photos/1389429/pexels-photo-1389429.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop'); background-size: cover; margin-bottom: 0.5rem;"></div>
+                <h4 style="font-size: 0.8rem;">Haryanvi Power</h4>
+                <p style="font-size: 0.6rem; color: #a2adcf;">18 songs</p>
+            </div>
+            <div style="background: rgba(18, 22, 32, 0.5); border-radius: 0.8rem; padding: 0.7rem; transition: all 0.2s ease;">
+                <div style="width: 100%; aspect-ratio: 1; border-radius: 0.6rem; background-image: url('https://images.pexels.com/photos/207648/pexels-photo-207648.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop'); background-size: cover; margin-bottom: 0.5rem;"></div>
+                <h4 style="font-size: 0.8rem;">Bollywood Love</h4>
+                <p style="font-size: 0.6rem; color: #a2adcf;">32 songs</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="margin-top: 1.5rem; text-align: center; font-size: 0.65rem; color: #6b7280; padding: 1rem 0;">
+            <p>© 2026 Vibio Music Streaming — Desi Beats</p>
+        </div>
+    </div>
+
+
+    <script src="theme.js"></script>
+    <script src="playlist_manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const playlistId = urlParams.get('id');
+            
+            if(playlistId && window.PlaylistManager) {
+                const playlist = PlaylistManager.getPlaylistById(playlistId);
+                
+                if(playlist) {
+                    // Update Header
+                    const headerImg = document.querySelector('.cover');
+                    if(headerImg) headerImg.style.backgroundImage = `url('${playlist.coverUrl}')`;
+                    
+                    const title = document.querySelector('.info h1');
+                    if(title) title.textContent = playlist.name;
+                    
+                    const desc = document.querySelector('.playlist-description');
+                    if(desc) desc.textContent = playlist.description || 'Custom playlist';
+                    
+                    const meta = document.querySelector('.playlist-meta');
+                    if(meta) meta.innerHTML = `<span>By You</span> • <span>${playlist.songs.length} songs</span> • <span>${playlist.genre}</span>`;
+                    
+                    // Render Songs
+                    const songList = document.querySelector('.song-list');
+                    if(songList) {
+                        songList.innerHTML = ''; // Clear default songs
+                        
+                        if(playlist.songs.length === 0) {
+                            songList.innerHTML = '<div style="padding: 3rem; text-align: center; color: #a2adcf;">No songs yet. Search for hits and add them! 🎵</div>';
+                        } else {
+                            playlist.songs.forEach((song, index) => {
+                                const songHtml = `
+                                    <div class="song-item">
+                                        <div class="song-number">${index + 1}</div>
+                                        <div class="song-thumb" style="background-image: url('${song.artworkUrl100}');"></div>
+                                        <div class="song-details">
+                                            <div class="song-title-text">${song.trackName}</div>
+                                            <div class="song-artist-text">${song.artistName}</div>
+                                        </div>
+                                        <div class="song-actions">
+                                            <audio controls preload="none" style="height: 30px; width: 140px;">
+                                                <source src="${song.previewUrl}" type="audio/mpeg">
+                                            </audio>
+                                            <button class="remove-song-btn" data-url="${song.previewUrl}" style="background:transparent; border:none; color:#ef4444; font-size:1.1rem; cursor:pointer;" title="Remove song">✖</button>
+                                        </div>
+                                    </div>
+                                `;
+                                songList.insertAdjacentHTML('beforeend', songHtml);
+                            });
+                            
+                            // Handle Remove Song
+                            document.querySelectorAll('.remove-song-btn').forEach(btn => {
+                                btn.addEventListener('click', (e) => {
+                                    e.stopPropagation();
+                                    const url = e.currentTarget.getAttribute('data-url');
+                                    if(confirm('Remove this song from playlist?')) {
+                                        PlaylistManager.removeSong(playlistId, url);
+                                        window.location.reload(); 
+                                    }
+                                });
+                            });
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

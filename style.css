@@ -1,0 +1,998 @@
+               .animation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0f0c1f, #030207);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeOut 2.5s ease-in-out forwards;
+            pointer-events: none;
+        }
+
+        .animation-content {
+            text-align: center;
+            animation: scalePulse 1.2s ease-out forwards;
+        }
+
+        .vibio-logo-animate {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            animation: glowPulse 1.5s ease-in-out infinite;
+        }
+
+        .tagline-animate {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #a78bfa;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        }
+
+        .music-bars {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .bar {
+            width: 6px;
+            height: 40px;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            border-radius: 4px;
+            animation: barBounce 0.8s ease-in-out infinite;
+        }
+
+        .bar:nth-child(1) { animation-delay: 0s; height: 30px; }
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 50px; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 40px; }
+        .bar:nth-child(4) { animation-delay: 0.3s; height: 60px; }
+        .bar:nth-child(5) { animation-delay: 0.4s; height: 35px; }
+        .bar:nth-child(6) { animation-delay: 0.5s; height: 45px; }
+        .bar:nth-child(7) { animation-delay: 0.6s; height: 55px; }
+        .bar:nth-child(8) { animation-delay: 0.7s; height: 30px; }
+
+        @keyframes barBounce {
+            0%, 100% {
+                transform: scaleY(1);
+            }
+            50% {
+                transform: scaleY(1.5);
+            }
+        }
+
+        @keyframes scalePulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(192, 132, 252, 0.3);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                visibility: visible;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+         /* ========== ADDITIONAL BEAUTIFUL ANIMATIONS ========== */
+        
+        /* Floating animation for decorative elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Shimmer effect for cards */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        
+        /* Glow pulse for badges */
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7); }
+            50% { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0); }
+        }
+        
+        /* Rotate and scale for icons */
+        @keyframes iconSpin {
+            from { transform: rotate(0deg) scale(1); }
+            to { transform: rotate(360deg) scale(1.1); }
+        }
+        
+        /* Wave animation for audio visualizer */
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+        
+        /* Slide in from left */
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Slide in from right */
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        /* Bounce animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        /* Apply animations to sections */
+        .playlist-scroll {
+            animation: slideInLeft 0.8s ease-out 1.9s backwards;
+        }
+        
+        .cards-grid {
+            animation: slideInRight 0.8s ease-out 2s backwards;
+        }
+        
+        .just-dropped-section {
+            animation: slideInLeft 0.8s ease-out 2.1s backwards;
+        }
+        
+        .footer-section {
+            animation: slideInRight 0.8s ease-out 2.2s backwards;
+        }
+        
+        /* Floating animation for station emojis */
+        .station-emoji {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Hover glow animation for cards */
+        .music-card, .playlist-station, .drop-hero-card, .drop-mini-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .music-card:hover .card-img {
+            animation: bounce 0.5s ease;
+        }
+        
+        /* Pulse animation for play badges */
+        .play-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .music-card:hover .play-badge {
+            animation: badgePulse 1s infinite;
+            background: rgba(79,70,229,0.5);
+        }
+        
+        /* Wave animation for audio players on hover */
+        .audio-wrapper:hover audio::-webkit-media-controls-play-button {
+            animation: iconSpin 0.5s ease;
+        }
+        
+        /* Animated gradient border for featured cards */
+        .drop-hero-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .drop-hero-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #c084fc, #60a5fa, #f59e0b, #c084fc);
+            border-radius: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+        
+        .drop-hero-card:hover::before {
+            opacity: 1;
+            animation: shimmer 2s linear infinite;
+            background-size: 200% 200%;
+        }
+        
+        /* Music visualizer for now playing */
+        .music-visualizer {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            margin-left: 1rem;
+        }
+        
+        .visualizer-bar {
+            width: 3px;
+            height: 12px;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            border-radius: 2px;
+            animation: wave 0.8s ease-in-out infinite;
+        }
+        
+        .visualizer-bar:nth-child(1) { animation-delay: 0s; height: 8px; }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.1s; height: 15px; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.2s; height: 10px; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.3s; height: 20px; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0.4s; height: 12px; }
+        
+        /* Animated gradient text for section headers */
+        .section-header h3 {
+            background: linear-gradient(135deg, #ffffff, #c084fc, #60a5fa);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        /* Logo hover animation */
+        .logo {
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo span {
+            animation: bounce 0.5s ease;
+        }
+        
+        /* Nav links hover underline animation */
+        .nav-links a {
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Button hover animations */
+        .btn-login, .btn-signup, .subscribe-btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .btn-login:hover, .btn-signup:hover, .subscribe-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        /* Search bar focus animation */
+        .search-container {
+            transition: all 0.3s ease;
+        }
+        
+        .search-container:focus-within {
+            transform: scale(1.02);
+            border-color: #c084fc;
+            box-shadow: 0 0 15px rgba(192, 132, 252, 0.3);
+        }
+        
+        /* Station song items hover animation */
+        .station-song-item {
+            transition: all 0.3s ease;
+        }
+        
+        .station-song-item:hover {
+            transform: translateX(5px);
+        }
+        
+        /* Social icons hover animation */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) rotate(360deg);
+        }
+        
+        /* Newsletter form focus animation */
+        .newsletter-input:focus {
+            outline: none;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.5);
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171b24;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6c63ff;
+        }
+
+
+        /* ---------- RESET & GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0c12, #030507);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #edeef2;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #171b24;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6c63ff;
+        }
+
+        .app {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .logo span {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 6px rgba(96,165,250,0.4));
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.25);
+            padding-bottom: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            font-weight: 500;
+        }
+        .nav-links a {
+            color: #b9c3e0;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+            text-shadow: 0 0 5px #8b5cf6;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: #1e212b;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            border: 1px solid #2d2f3a;
+            transition: 0.2s;
+        }
+        .search-container:hover {
+            border-color: #4f46e5;
+        }
+        .search-icon {
+            color: #8b5cf6;
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .search-input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.9rem;
+            outline: none;
+            width: 200px;
+        }
+        .search-input::placeholder {
+            color: #8b92b0;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .btn-login, .btn-signup {
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: none;
+            font-family: inherit;
+        }
+        .btn-login {
+            background: transparent;
+            border: 1px solid #4f46e5;
+            color: #a78bfa;
+        }
+        .btn-login:hover {
+            background: rgba(79, 70, 229, 0.15);
+            transform: scale(1.02);
+        }
+        .btn-signup {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+        }
+        .btn-signup:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 12px rgba(79,70,229,0.5);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 2rem 0 1.2rem 0;
+        }
+        .section-header h3 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .section-header a {
+            color: #8b9bcf;
+            font-size: 0.85rem;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .music-card {
+            background: rgba(18, 22, 32, 0.65);
+            backdrop-filter: blur(4px);
+            border-radius: 1.5rem;
+            padding: 1rem 1rem 1.2rem 1rem;
+            transition: transform 0.25s ease, background 0.2s;
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        .music-card:hover {
+            transform: translateY(-6px);
+            background: rgba(28, 33, 48, 0.85);
+            border-color: rgba(139, 92, 246, 0.5);
+            box-shadow: 0 18px 28px -12px rgba(0,0,0,0.5);
+        }
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 1.2rem;
+            margin-bottom: 0.9rem;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.3);
+        }
+        .music-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .music-card p {
+            font-size: 0.75rem;
+            color: #a2adcf;
+            margin-top: 0.2rem;
+        }
+        .play-badge {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 0.7rem;
+            background: rgba(79,70,229,0.3);
+            padding: 0.2rem 0.7rem;
+            border-radius: 50px;
+            width: fit-content;
+        }
+
+        .audio-wrapper {
+            display: none; /* Hide individual audio controls */
+        }
+        
+        .music-card, .station-song-item {
+            cursor: pointer;
+        }
+
+        .card-img {
+            position: relative;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 1.2rem;
+        }
+
+        .music-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .station-play-btn {
+            width: 30px;
+            height: 30px;
+            background: #4f46e5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .station-song-item:hover .station-play-btn {
+            transform: scale(1.1);
+            background: #6366f1;
+        }
+
+        .playlist-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+            scrollbar-width: thin;
+        }
+        .playlist-station {
+            min-width: 320px;
+            background: rgba(18, 22, 32, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            transition: 0.2s;
+        }
+        .playlist-station:hover {
+            border-color: #4f46e5;
+            background: rgba(28, 33, 48, 0.9);
+        }
+        .station-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.4);
+            padding-bottom: 0.7rem;
+        }
+        .station-emoji {
+            font-size: 2rem;
+        }
+        .station-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #c084fc, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .station-songs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .station-song-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(0,0,0,0.3);
+            padding: 0.5rem 0.7rem;
+            border-radius: 1rem;
+            transition: 0.1s;
+        }
+        .station-song-item:hover {
+            background: rgba(79,70,229,0.2);
+        }
+        .song-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        .song-info-mini {
+            flex: 1;
+            min-width: 0;
+        }
+        .song-info-mini .song-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .song-info-mini .artist-name {
+            font-size: 0.65rem;
+            color: #a78bfa;
+        }
+        .station-song-item audio {
+            width: 90px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .station-song-item audio::-webkit-media-controls-timeline,
+        .station-song-item audio::-webkit-media-controls-current-time-display,
+        .station-song-item audio::-webkit-media-controls-time-remaining-display {
+            display: none;
+        }
+
+        .now-playing-section {
+            margin-top: 2.5rem;
+            background: linear-gradient(135deg, rgba(79,70,229,0.15), rgba(124,58,237,0.1));
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1.2rem 1.8rem;
+            border: 1px solid rgba(79, 70, 229, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .featured-track {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .featured-art {
+            width: 60px;
+            height: 60px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+        }
+        .featured-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .featured-info p {
+            font-size: 0.75rem;
+            color: #a78bfa;
+        }
+        .featured-audio {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .spacer {
+            height: 30px;
+        }
+
+        @media (max-width: 850px) {
+            .app {
+                padding: 1rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-container {
+                width: 100%;
+            }
+            .search-input {
+                width: 100%;
+            }
+            .auth-buttons {
+                justify-content: flex-end;
+            }
+        }
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .playlist-station {
+                min-width: 280px;
+            }
+        }
+        .badge-new {
+            background: #10b981;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+        .attribution {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 2rem;
+            color: #6b7280;
+        }
+        .attribution a {
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+
+        /* Newsletter & Footer - Clean End Section */
+        .footer-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(79, 70, 229, 0.3);
+        }
+        
+        .newsletter {
+            background: linear-gradient(135deg, #1e1b3e, #0f0e1a);
+            border-radius: 2rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        
+        .newsletter h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .newsletter p {
+            color: #9ca3af;
+            margin-bottom: 1.2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-input {
+            background: #1e212b;
+            border: 1px solid #4f46e5;
+            padding: 0.7rem 1.2rem;
+            border-radius: 60px;
+            color: white;
+            width: 260px;
+            font-family: inherit;
+        }
+        
+        .newsletter-input::placeholder {
+            color: #6b7280;
+        }
+        
+        .subscribe-btn {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border: none;
+            padding: 0.7rem 1.8rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .subscribe-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 12px rgba(79,70,229,0.5);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            color: #c084fc;
+        }
+        
+        .footer-col a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            transition: 0.2s;
+        }
+        
+        .footer-col a:hover {
+            color: #c084fc;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(79, 70, 229, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: 0.2s;
+            cursor: default;
+        }
+        
+        .social-icon:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        .copyright {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #6b7280;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        
+        .badge-new {
+            background: #10b981;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .attribution {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #6b7280;
+        }
+        .attribution a {
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+
+        @media (max-width: 850px) {
+            .app {
+                padding: 1rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-container {
+                width: 100%;
+            }
+            .search-input {
+                width: 100%;
+            }
+            .auth-buttons {
+                justify-content: flex-end;
+            }
+            .featured-drops {
+                grid-template-columns: 1fr;
+            }
+            .drop-hero-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .drop-artwork {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        @media (max-width: 600px) {
+            .cards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .playlist-station {
+                min-width: 280px;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }}
+            a {
+  text-decoration: none;
+  color:inherit;
+}

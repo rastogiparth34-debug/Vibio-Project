@@ -1,0 +1,21 @@
+const HINDI_POEMS = [
+    // HINDI CLASSICS
+    { title: "Koshish Karne Walon Ki Haar Nahi Hoti", author: "Sohanlal Dwivedi", category: "hindi", lines: ["Lehron se dar kar nauka paar nahi hoti,", "Koshish karne walon ki kabhi haar nahi hoti.", "Nanhi cheenti jab daana lekar chalti hai,", "Chadhti deewaron par, sau baar phisalti hai.", "Mann ka vishwas ragon mein saahas bharta hai,", "Chadhkar girna, girkar chadhna na akharta hai.", "Aakhir uski mehnat bekaar nahi hoti,", "Koshish karne walon ki kabhi haar nahi hoti."] },
+    { title: "Jhansi Ki Rani", author: "Subhadra Kumari Chauhan", category: "hindi", lines: ["Sinhasan hil uthe rajvanshon ne bhrukuti tanni thi,", "Budhhe Bharat mein bhi aayi phir se nayi jawani thi.", "Gumi hui azadi ki keemat sabne pehchani thi,", "Door phirangi ko karne ki sabne mann mein thani thi.", "Chamak uthi san sattavan mein, woh talwar purani thi,", "Bundele harbolon ke munh humne suni kahani thi,", "Khoob ladi mardani woh toh Jhansi wali rani thi."] },
+    { title: "Agneepath", author: "Harivansh Rai Bachchan", category: "hindi", lines: ["Vriksh hon bhale khade, hon ghane, hon bade,", "Ek patra chhaon bhi maang mat, maang mat, maang mat,", "Agneepath, Agneepath, Agneepath.", "Tu na thakega kabhi, tu na thamega kabhi, tu na mudega kabhi,", "Kar shapath, kar shapath, kar shapath,", "Agneepath, Agneepath, Agneepath."] },
+    { title: "Pushp Ki Abhilasha", author: "Makhanlal Chaturvedi", category: "hindi", lines: ["Chaah nahi main surbala ke gahno mein goontha jaoon,", "Chaah nahi, premi-mala mein, bindh pyari ko lalachaoon.", "Mujhe tod lena vanmali, us path par tum dena phenk,", "Matribhoomi par sheesh chadhane jis path jaayen veer anek."] },
+    { title: "Jo Beet Gayi So Baat Gayi", author: "Harivansh Rai Bachchan", category: "hindi", lines: ["Jo beet gayi so baat gayi,", "Jeevan mein ek sitara tha, maana woh behad pyara tha,", "Woh doob gaya toh doob gaya,", "Ambar ke aanan ko dekho, kitne iske taare toote,", "Kitne iske choote, jo choot gaye phir kahan mile,", "Par bolo toote taaron par, kab ambar shok manata hai,", "Jo beet gayi so baat gayi."] },
+
+    // URDU SHAYARI & GHAZALS
+    { title: "Dil-e-Nadaan", author: "Mirza Ghalib", category: "urdu", lines: ["Dil-e-nadaan tujhe hua kya hai,", "Aakhir is dard ki dawa kya hai.", "Hum hain mushtaq aur woh bezaar,", "Ya ilahi yeh maajra kya hai."] },
+    { title: "Hazaaron Khwahishen Aisi", author: "Mirza Ghalib", category: "urdu", lines: ["Hazaaron khwahishen aisi ke har khwahish pe dum nikle,", "Bahut nikle mere armaan, lekin phir bhi kam nikle.", "Nikalna khuld se aadam ka sunte aaye hain lekin,", "Bahut be-abru hokar tere kooche se hum nikle."] },
+    { title: "Mujhse Pehli Si Mohabbat", author: "Faiz Ahmed Faiz", category: "urdu", lines: ["Mujhse pehli si mohabbat mere mehboob na maang,", "Maine samjha tha ke tu hai toh darakshan hai hayaat,", "Tera gham hai toh gham-e-dahar ka jhagda kya hai,", "Teri surat se hai aalam mein baharon ko sabaat."] },
+    { title: "Main Pal Do Pal Ka Shayar Hoon", author: "Sahir Ludhianvi", category: "urdu", lines: ["Main pal do pal ka shayar hoon, pal do pal meri kahani hai,", "Pal do pal meri hasti hai, pal do pal meri jawani hai.", "Mujhse pehle kitne shayar, aaye aur chale gaye,", "Kuchh aahein bharkar laut gaye, kuchh naghme gakar chale gaye."] },
+    { title: "Kuchh Reet Jagat Ki Aisi Hai", author: "Javed Akhtar", category: "urdu", lines: ["Kuchh reet jagat ki aisi hai, har ek subah ki shaam hui,", "Tu kaun hai, tera naam hai kya, Sita bhi yahan badnaam hui.", "Phir kyun sansar ki baaton se, bheeg gaye tere naina,", "Kuchh toh log kahenge, logon ka kaam hai kehna."] },
+
+    // CONTEMPORARY / GULZAR
+    { title: "Kitaabein", author: "Gulzar", category: "hindi", lines: ["Kitaabein jhaankti hain band almari ke sheeshon se,", "Badi hasrat se takti hain.", "Mahino ab mulaqatein nahi hoti,", "Jo shamein unki sobat mein kata karti thhi, ab aksar,", "Guzar jati hai computer ke parde par."] },
+    { title: "Zindagi Tere Gham Ne", author: "Gulzar", category: "hindi", lines: ["Zindagi tere gham ne humein rishte naye samjhaye,", "Mile jo zakhm toh apno ke chehre yaad aaye.", "Suna thha waqt har zakhm ko bhar deta hai,", "Par humein toh dard ke naye naye silsile nazar aaye."] }
+];
+
+window.HINDI_POEMS = HINDI_POEMS;
