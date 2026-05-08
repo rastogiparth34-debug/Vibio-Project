@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/vibio.html" },
+    { "source": "/", "destination": "/index.html" },
     { "source": "/login", "destination": "/newLoginPage.html" },
     { "source": "/signup", "destination": "/NewSignUp.html" },
     { "source": "/discover", "destination": "/Discover.html" },

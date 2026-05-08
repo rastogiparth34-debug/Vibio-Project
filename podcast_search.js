@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const signUpBtn = authOverlay.querySelector('.btn-subscribe');
             if(signUpBtn) {
                 signUpBtn.textContent = 'Subscribe Now';
-                signUpBtn.href = 'vibio.html#subscribeNowBtn';
+                signUpBtn.href = 'index.html#subscribeNowBtn';
             }
         }
         if(mainContent) mainContent.style.filter = 'blur(15px)';

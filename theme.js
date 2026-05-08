@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </button>
   `;
 
-  const isLandingPage = window.location.pathname.endsWith('vibio.html') || window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
+  const isLandingPage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
   
   if (!isLandingPage) {
       const header = document.querySelector('.header');
