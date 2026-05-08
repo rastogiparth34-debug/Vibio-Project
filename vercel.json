@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/vibio.html" },
+    { "source": "/login", "destination": "/newLoginPage.html" },
+    { "source": "/signup", "destination": "/NewSignUp.html" },
+    { "source": "/discover", "destination": "/Discover.html" },
+    { "source": "/playlist", "destination": "/Playlist.html" },
+    { "source": "/inside-playlist", "destination": "/InsidePlaylist.html" },
+    { "source": "/podcasts", "destination": "/Podcasts.html" },
+    { "source": "/member-podcasts", "destination": "/MemberPodcasts.html" },
+    { "source": "/poem", "destination": "/Poem.html" },
+    { "source": "/create-playlist", "destination": "/createPlaylist.html" },
+    { "source": "/karan-aujla", "destination": "/karanAujla.html" },
+    { "source": "/punjabi-swag", "destination": "/punjaiSwagMainPage.html" }
+  ]
+}
