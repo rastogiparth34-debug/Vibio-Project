@@ -419,10 +419,34 @@
             .hero-text h1 {
                 font-size: 2rem;
             }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 10px 0;
+            }
+            .search-container {
+                width: 100%;
+            }
+            .search-input {
+                width: 100%;
+            }
+            .auth-buttons {
+                justify-content: center;
+            }
         }
         @media (max-width: 600px) {
             .cards-grid {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            .newsletter-input {
+                width: 100%;
+                max-width: 100%;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+            .subscribe-btn {
+                width: 100%;
             }
         }
     </style>

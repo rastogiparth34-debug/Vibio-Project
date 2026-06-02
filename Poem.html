@@ -306,6 +306,53 @@
             font-family: 'EB Garamond', serif;
             font-size: 2rem;
         }
+
+        @media (max-width: 900px) {
+            .bento-container {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px;
+            }
+            .header {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .nav-links {
+                margin-top: 15px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a {
+                margin: 5px 15px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .bento-container {
+                grid-template-columns: 1fr;
+            }
+            .item-spotlight, .item-search, .item-moods {
+                grid-column: span 1;
+            }
+            .item-lang {
+                grid-column: span 1;
+            }
+            .poem-grid {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            .collection-header {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .mini-player {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>

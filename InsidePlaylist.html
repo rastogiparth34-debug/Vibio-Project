@@ -307,6 +307,18 @@
             .track-info { width: 100%; justify-content: center; }
             .audio-player { width: 100%; max-width: 100%; }
         }
+        @media (max-width: 600px) {
+            .song-item {
+                flex-wrap: wrap;
+            }
+            .song-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            .header {
+                flex-direction: column;
+            }
+        }
     </style>
     <link rel="stylesheet" href="theme.css">
 </head>

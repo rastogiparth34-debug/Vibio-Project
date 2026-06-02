@@ -94,6 +94,31 @@
             margin-bottom: 30px;
             font-weight: 600;
         }
+
+        @media (max-width: 850px) {
+            .creator-banner {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px 20px;
+            }
+            .creator-details h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .episode-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            #podcast-audio-player {
+                padding: 10px !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center;
+            }
+            #pod-audio-controls {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>

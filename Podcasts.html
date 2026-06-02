@@ -236,6 +236,36 @@
         }
         .bento-style { position: relative; }
         .bento-style:hover .remove-fav-btn { display: block; }
+        
+        @media (max-width: 850px) {
+            .modern-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .podcast-search-container h1 {
+                font-size: 2rem;
+            }
+            .search-input-wrapper input {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .podcast-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            .auth-lock-card {
+                padding: 30px 20px;
+            }
+            .auth-btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="theme.css">
     <link rel="stylesheet" href="search.css"> <!-- For toast styles -->

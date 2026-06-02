@@ -851,6 +851,7 @@
             border-radius: 60px;
             color: white;
             width: 260px;
+            max-width: 100%;
             font-family: inherit;
         }
         
@@ -959,6 +960,11 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 0.5rem 0;
+            }
             .search-container {
                 width: 100%;
             }
@@ -982,16 +988,17 @@
         }
         @media (max-width: 600px) {
             .cards-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             .playlist-station {
-                min-width: 280px;
+                min-width: 250px;
             }
             .footer-links {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-            }}
+            }
+        }
             a {
   text-decoration: none;
   color:inherit;

@@ -313,6 +313,32 @@
             .hero-cover { width: 150px; height: 150px; }
             .hero-content { flex-direction: column; align-items: flex-start; }
             .hero-banner { height: auto; padding: 30px; }
+            
+            .modern-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        @media (max-width: 600px) {
+            .bento-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-auto-rows: 220px;
+            }
+            .bento-card[style*="grid-column: span 2"] {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+            .hero-banner {
+                padding: 20px;
+            }
+            .hero-cover {
+                width: 100px; height: 100px;
+            }
+            .hero-text h1 { font-size: 2.2rem; }
         }
     </style>
     <link rel="stylesheet" href="theme.css">
